@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="即刻短文, NeBIGR&#39;s Blog">
+    <meta name="keywords" content="生信2：R 与 基因差异表达、GO富集, NeBIGR&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>即刻短文 | NeBIGR&#39;s Blog</title>
+    <title>生信2：R 与 基因差异表达、GO富集 | NeBIGR&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -291,12 +291,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/R.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">即刻短文</h1>
+                    <h1 class="description center-align post-title">生信2：R 与 基因差异表达、GO富集</h1>
                 </div>
             </div>
         </div>
@@ -410,12 +410,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/R/">
+                                <span class="chip bg-color">R</span>
+                            </a>
+                        
+                            <a href="/tags/gene2/">
+                                <span class="chip bg-color">基因</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/bioinfo1/" class="post-category">
+                                生物信息学
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -424,28 +441,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2025-01-24
+                    2025-02-05
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-01-24
+                    2025-02-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    923
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -465,7 +482,253 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <ul>
+<li><strong>R语言是一种用于统计计算和图形生成的编程语言和操作环境，主要用于数据分析、统计建模以及制图。</strong></li>
+<li><strong>基因差异表达和GO富集分析是生物信息学中用于分析高通量测序数据的两种重要方法，通常用于理解不同条件下基因表达的变化。</strong></li>
+</ul>
+<hr>
+<h1 id="一、基础定义"><a href="#一、基础定义" class="headerlink" title="一、基础定义"></a>一、基础定义</h1><ul>
+<li>R语言中的<strong>基础定义</strong>有：<ol>
+<li>变量：在R中，可以使用赋值运算符（&lt;- 或者 =）来给变量赋值。变量名可以包含字母、数字、点和下划线，但不能以数字开头。</li>
+<li>数据类型：R支持多种数据类型，包括数值型、字符型、逻辑型、复数等。</li>
+<li>向量：向量是R中最基本的数据结构之一，是一维数组，可以存储相同类型的元素。可以用c()函数来创建一个向量。</li>
+<li>矩阵：矩阵是二维的数据结构，所有元素必须是相同的类型。可以用matrix()函数创建。</li>
+<li>数组：数组是多维的数据结构，与矩阵类似，但是可以有超过两维。</li>
+<li>因子：因子是用于存储分类数据的向量，通常用于表示有限数量的不同组或类别。</li>
+<li>列表：列表是一种复合数据结构，可以包含不同类型的对象，如向量、矩阵、列表等。</li>
+<li>数据框：数据框类似于表格或电子表格，每一列可以包含不同类型的值，是R中用于存储和处理数据集的主要结构。</li>
+<li>函数：R语言中的函数是一段可重复使用的代码块，用来执行特定任务。R自带了许多内置函数，并且用户也可以自定义函数。</li>
+<li>包（Packages）：R的扩展库被称为包，它们提供了额外的功能，比如更复杂的统计分析工具或者图形界面。你可以通过install.packages()安装新的包，并用library()加载到当前会话中。</li>
+</ol>
+</li>
+</ul>
+<h1 id="二、基因差异表达、GO富集"><a href="#二、基因差异表达、GO富集" class="headerlink" title="二、基因差异表达、GO富集"></a>二、基因差异表达、GO富集</h1><ul>
+<li><strong>基因差异表达</strong>是指在不同的实验条件或样本组之间比较基因表达水平，以识别那些表达显著变化的基因。</li>
+<li>一旦找到了差异表达的基因列表，接下来就可以进行<strong>GO富集分析</strong>，以了解这些基因可能参与的生物学过程、分子功能和细胞组成成分。Gene Ontology（GO）是一个结构化的、受控的词汇表，描述了基因产品在生物学中的作用。</li>
+</ul>
+<h1 id="三、代码实例"><a href="#三、代码实例" class="headerlink" title="三、代码实例"></a>三、代码实例</h1><h2 id="0、准备"><a href="#0、准备" class="headerlink" title="0、准备"></a>0、准备</h2><ul>
+<li>安装并载入所需的包：</li>
+</ul>
+<pre class="line-numbers language-R"><code class="language-R">#包的安装
+install.packages("BiocManager")
+library(BiocManager)
+BiocManager::install("DESeq2")
+install.packages("ggplot2")
+library(ggplot2)
+install.packages("pheatmap")
+library(pheatmap)
+install.packages("dplyr")
+library(dplyr)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>设置工作目录：</li>
+</ul>
+<pre class="line-numbers language-R"><code class="language-R">#0. 设置当前工作目录
+setwd("xxx") # xxx为你设定的R的工作目录
+#查看工作目录
+getwd()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="1、画图"><a href="#1、画图" class="headerlink" title="1、画图"></a>1、画图</h2><ul>
+<li>从外部读取数据：</li>
+</ul>
+<pre class="line-numbers language-R"><code class="language-R"># 从外部读入数据
+rpkm<-read.table("rpkm.txt",header=T,row.names=1)
+head(rpkm,n=20)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><em>head：取数据的前n行，检查数据</em></p>
+<ul>
+<li>绘制箱线图：</li>
+</ul>
+<pre class="line-numbers language-R"><code class="language-R"># 用读入的RPKM数据绘制箱线图
+rpkm<-read.table("rpkm.txt",header=T,row.names=1)
+boxplot(rpkm)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>输出：<br><img src="https://s2.loli.net/2025/02/05/uOVfHTFpjXnhSPC.png" alt="image.png"></p>
+<ul>
+<li>美化箱线图：</li>
+</ul>
+<pre class="line-numbers language-R"><code class="language-R">log2(rpkm[,1][rpkm[,1]>0])->S0h1
+log2(rpkm[,2][rpkm[,2]>0])->S0h2
+boxplot(S0h1,S0h2,col=c("cyan","purple"),main="log2(RPKM)boxplot",names=c("S0h1","S0h2"))
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>输出：<br><img src="https://s2.loli.net/2025/02/05/yfhwa6v1Q4pPgTq.png" alt="image.png"></p>
+<ul>
+<li>绘制直方图：</li>
+</ul>
+<pre class="line-numbers language-R"><code class="language-R"># 用读入的RPKM数据绘制直方图
+par(mfrow=c(1,2))
+hist(S0h1,breaks=100,main="log2(RPKM)histogram",col="blue")
+hist(S0h2,breaks=100,main="log2(RPKM)histogram",col="red")
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输出：<br><img src="https://s2.loli.net/2025/02/05/iIrD8s6kbh9LOS1.png" alt="image.png"></p>
+<h2 id="2、相关性分析"><a href="#2、相关性分析" class="headerlink" title="2、相关性分析"></a>2、相关性分析</h2><ul>
+<li>用R检验两重复样本的相关性：</li>
+</ul>
+<pre class="line-numbers language-R"><code class="language-R"># 用R检验两重复样本的相关性
+log2(rpkm+1)->rpkm
+ggplot(rpkm,aes(x=S0h1,y=S0h2))+geom_point(col="blue",cex=.6)+xlab("S0h1 log2(RPKM+1)")+ylab("S0h2 log2(RPKM+1)")->sp
+model<-lm(S0h2~S0h1,rpkm)
+summary(model)
+sp+stat_smooth(method=lm,col="red",cex=1.1)+annotate("text",label="R^2==0.98",x=1,y=10,parse=TRUE)+theme_classic()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输出：<br><img src="https://s2.loli.net/2025/02/05/17HEAy3lxNkmT5b.png" alt="image.png"></p>
+<ul>
+<li>用R画reads染色体分布图：</li>
+</ul>
+<pre class="line-numbers language-R"><code class="language-R"># 用R画reads染色体分布图
+read.table("coverage.txt",header=T,sep="\t")->coverage
+head(coverage)
+#将 coverage 数据框中的 chr 列转换为因子类型，并指定因子的水平为1到22号染色体，以及X和Y染色体
+coverage$chr<-factor(coverage$chr,levels=c(1:22,"X","Y")) 
+p<-ggplot(coverage,aes(x=position,y=coverage,fill=chr))+
+  geom_bar(stat="identity",width=.5)+
+  ylab("Coverage")+
+  scale_fill_manual(values=rainbow(24))+
+  facet_grid(chr ~ .)+ #添加分面，按染色体分割图形，每个染色体一个面板
+  scale_y_continuous(breaks=c(0,3))+
+  xlab("Position")
+p
+# ggsave(filename="coverage_bar.png",plot=p,height=10,width=6.18) # 保存图
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em>ggsave( )是保存图片</em></p>
+<p>输出图：<br><img src="https://s2.loli.net/2025/02/05/eHWOhK6tCzaFwLZ.png" alt="image.png"></p>
+<h2 id="3、基因差异表达分析"><a href="#3、基因差异表达分析" class="headerlink" title="3、基因差异表达分析"></a>3、基因差异表达分析</h2><ol>
+<li>用R筛选差异表达基因并绘制火山图：</li>
+</ol>
+<pre class="line-numbers language-R"><code class="language-R"># 用R筛选差异表达基因并绘制火山图
+library("DESeq2") # 载入DESeq2包
+data <- read.table("genecount.txt")
+dim(data)
+head(data)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>预处理数据,去掉低表达的基因：</li>
+</ol>
+<pre class="line-numbers language-R"><code class="language-R"># 预处理数据,去掉低表达的基因,只包含那些在至少一个样本中有表达的基因
+# rowSums(data)计算data数据框中每一行的和
+expressionData <- data[rowSums(data) >= dim(data)[2],] 
+dim(expressionData)
+head(expressionData)
+
+expressionData <- expressionData+1
+head(expressionData)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li>创建因子dex及元数据框：</li>
+</ol>
+<pre class="line-numbers language-R"><code class="language-R"># 创建因子dex及元数据框
+dex <- factor(c(rep("L2",3),rep("L3",3)))
+meta <- data.frame(row.names=colnames(data),dex)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ol start="4">
+<li>创建DESeqDataSet对象：</li>
+</ol>
+<pre class="line-numbers language-R"><code class="language-R"># 创建DESeqDataSet对象
+dds <- DESeqDataSetFromMatrix(countData = expressionData, colData = meta, design = ~ dex)
+dds <- DESeq(dds)
+res <- results(dds)
+head(res)
+
+res_1 <- data.frame(res)
+res_1 %>%
+  mutate(group =case_when(
+    log2FoldChange >= 2 & padj <=0.05 ~ "Up",
+    log2FoldChange <= -2 & padj <=0.05 ~ "Down",
+    TRUE ~ "Unchanged"
+  )) -> res_2
+table(res_2$group)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="5">
+<li>画火山图：</li>
+</ol>
+<pre class="line-numbers language-R"><code class="language-R"># 画火山图
+DEdata <- read.csv(paste('H1_vs_L1.bud.csv',sep = "."),header = T)
+
+dt <- data.frame(DEdata, stringsAsFactors = FALSE, check.names = FALSE)
+table(dt$group)
+
+dt$log10FDR <- -log10(dt$padj)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="6">
+<li>获取表达差异最显著的10个基因：</li>
+</ol>
+<pre class="line-numbers language-R"><code class="language-R"># 获取表达差异最显著的10个基因；
+top10up <- filter(dt,group=="Up") %>% distinct(X,.keep_all = T) %>% top_n(10,abs(log2FoldChange))
+top10down <- filter(dt,group=="Down") %>% distinct(X,.keep_all = T) %>% top_n(10,abs(log2FoldChange))
+top10sig <- rbind(top10up,top10down)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="7">
+<li>调整火山图：</li>
+</ol>
+<pre class="line-numbers language-R"><code class="language-R"># 新增一列，将Top10的差异基因标记为2，其他的标记为1；
+dt$size <- case_when(!(dt$X %in% top10sig$X)~ 1,dt$X %in% top10sig$X ~ 2)
+# 提取非Top10的基因表格；
+df <- filter(dt,size==1)
+# 指定绘图顺序,将group列转成因子型；
+df$group <- factor(df$group,levels = c("Up","Down","Unchanged"),ordered = T)
+# 自定义半透明颜色（红绿）；
+mycolor <- c("#FF99CC","#99CC00","gray80")
+p <- ggplot(data=df,aes(log2FoldChange,log10FDR,color=group))+
+  #-----------------------------
+geom_point(size=1.6)+
+  scale_colour_manual(name="",values=alpha(mycolor,0.7))+
+  geom_point(data=top10up,aes(log2FoldChange,log10FDR),color="#FF9999",size=3,alpha=0.9)+
+  geom_point(data=top10down,aes(log2FoldChange,log10FDR),color="#7cae00",size=3,alpha=0.9)+
+  labs(y="-log10FDR",title = 'H1_vs_L1')+
+  scale_y_continuous(expand=expansion(add = c(0, 0)))+
+  scale_x_continuous(limits = c(-10, 10))+
+  geom_hline(yintercept = c(-log10(0.05)),size = 0.7,color = "orange",lty = "dashed")+
+  geom_vline(xintercept = c(-2,2), size = 0.7,color = "orange",lty = "dashed")+
+  theme_classic()
+p
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输出：<br><img src="https://s2.loli.net/2025/02/05/l2ix3bCkaOUHcD7.png" alt="image.png"></p>
+<h2 id="4、GO富集分析"><a href="#4、GO富集分析" class="headerlink" title="4、GO富集分析"></a>4、GO富集分析</h2><ul>
+<li>用R进行聚类分析并作图：</li>
+</ul>
+<pre class="line-numbers language-R"><code class="language-R"># 用R进行聚类分析并作图
+data <- read.table("heatmap.txt",header=T,sep="\t",row.names=1)
+head(data)
+data.m = as.matrix(data)
+data.m = log2(data.m+0.01)
+pheatmap(data.m, 
+         cluster_col = TRUE, # 如果是FALSE表示只对行进行聚类
+         clustering_distance_rows = "correlation",
+         scale="row",
+         colorRampPalette(c("green", "black", "red"))(100),
+         fontsize_row=6)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输出图：<br><img src="https://s2.loli.net/2025/02/05/6vfiNBX2RY8sdck.png" alt="image.png"></p>
+<h2 id="5、线性拟合"><a href="#5、线性拟合" class="headerlink" title="5、线性拟合"></a>5、线性拟合</h2><ul>
+<li>拟合并获取相关信息：</li>
+</ul>
+<pre class="line-numbers language-R"><code class="language-R">x <- c(151, 174, 138, 186, 128, 136, 179, 163, 152, 131)
+y <- c(63, 81, 56, 91, 47, 57, 76, 72, 62, 48)
+
+relation <- lm(y ~ x)
+print(relation)
+summary(relation)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输出：<br><img src="https://s2.loli.net/2025/02/05/FPdWYeMUlzHKE2q.png" alt="image.png"></p>
+<ul>
+<li>用ggplot画拟合图：</li>
+</ul>
+<pre class="line-numbers language-R"><code class="language-R">library(ggplot2)
+data <- data.frame(weight = y, Height = x)
+
+ggplot(data, aes(x = weight, y=Height))+
+  geom_point(color = "blue", size = 3)+
+  geom_smooth(method = "lm", color = "red", se = FALSE)+
+  labs(title = "Height & Weight Regression",
+       x = "Weight in Kg", y = "Height in cm")+
+  theme_classic()
+
+a <- data.frame(x = 170)
+result <- predict(relation, a)
+print(result)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输出：<br><img src="https://s2.loli.net/2025/02/05/5PniRVSheDzBZOK.png" alt="image.png"><br><img src="https://s2.loli.net/2025/02/05/r6qtBERTk5AlcSZ.png" alt="image.png"></p>
+
                 
             </div>
             <hr/>
@@ -491,7 +754,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://nefelibatabigr.github.io/essay/index.html">https://nefelibatabigr.github.io/essay/index.html</a>
+                    <a href="https://nefelibatabigr.github.io/2025/02/05/sheng-xin-2-r-yu-ji-yin-chai-yi-biao-da-go-fu-ji/">https://nefelibatabigr.github.io/2025/02/05/sheng-xin-2-r-yu-ji-yin-chai-yi-biao-da-go-fu-ji/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -528,7 +791,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/R/">
+                                    <span class="chip bg-color">R</span>
+                                </a>
+                            
+                                <a href="/tags/gene2/">
+                                    <span class="chip bg-color">基因</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -701,34 +972,49 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/essay/index.html">
+                <a href="/2025/02/05/sheng-xin-2-r-yu-ji-yin-chai-yi-biao-da-go-fu-ji/">
                     <div class="card-image">
                         
+                        <img src="/medias/cover/R.jpg" class="responsive-img" alt="生信2：R 与 基因差异表达、GO富集">
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="即刻短文">
-                        
-                        <span class="card-title">即刻短文</span>
+                        <span class="card-title">生信2：R 与 基因差异表达、GO富集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            生物信息学2：R语言、基因差异表达、GO富集，学习内容为生物信息学导论课程内容。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-01-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-05
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Nefelibata BIGR
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/bioinfo1/" class="post-category">
+                                    生物信息学
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/R/">
+                        <span class="chip bg-color">R</span>
+                    </a>
+                    
+                    <a href="/tags/gene2/">
+                        <span class="chip bg-color">基因</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -736,37 +1022,55 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/essay/index.html">
+                <a href="/2025/02/05/ji-qi-xue-xi-3-te-zheng-gong-cheng/">
                     <div class="card-image">
                         
+                        <img src="/medias/cover/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B.png" class="responsive-img" alt="机器学习3——特征工程">
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="即刻短文">
-                        
-                        <span class="card-title">即刻短文</span>
+                        <span class="card-title">机器学习3——特征工程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            机器学习笔记3：特征工程部分，学习内容为黑马程序员的b站视频。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-01-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-05
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Nefelibata BIGR
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ml1/" class="post-category">
+                                    机器学习
+                                </a>
+                            
+                            <a href="/categories/ml1/shuju1/" class="post-category">
+                                    数据处理
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ml2/">
+                        <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
