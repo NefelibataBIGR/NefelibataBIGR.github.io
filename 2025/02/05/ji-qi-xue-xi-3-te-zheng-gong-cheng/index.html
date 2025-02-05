@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="机器学习2——基本概念, NeBIGR&#39;s Blog">
+    <meta name="keywords" content="机器学习3——特征工程, NeBIGR&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>机器学习2——基本概念 | NeBIGR&#39;s Blog</title>
+    <title>机器学习3——特征工程 | NeBIGR&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -291,12 +291,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/ml1.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">机器学习2——基本概念</h1>
+                    <h1 class="description center-align post-title">机器学习3——特征工程</h1>
                 </div>
             </div>
         </div>
@@ -432,6 +432,10 @@
                                 机器学习
                             </a>
                         
+                            <a href="/categories/ml1/shuju1/" class="post-category">
+                                数据处理
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -441,7 +445,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2025-02-04
+                    2025-02-05
                 </div>
                 
 
@@ -455,14 +459,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    479
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    8 分
                 </div>
                 
 
@@ -495,52 +499,314 @@
 <li>库：<strong>sklearn</strong></li>
 <li>==<strong>模型选择</strong>==：<br><img src="https://s2.loli.net/2025/02/01/kAj2tX7rLOn5FMq.png" alt="image.png"></li>
 </ul>
-<h1 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h1><ul>
-<li>机器学习：Machine Learning（ML）<ul>
-<li>定义：从<strong>数据</strong>中自动分析获得<strong>模型</strong>（规律），并利用模型对未知数据进行<strong>预测</strong>（解决问题）</li>
-</ul>
-</li>
-<li>==<strong>算法</strong>==是核心，<strong>数据</strong>和<strong>计算</strong>是基础</li>
-</ul>
-<h2 id="1、数据集的构成"><a href="#1、数据集的构成" class="headerlink" title="1、数据集的构成"></a>1、数据集的构成</h2><ul>
-<li>结构：特征值+标签值（不一定有）<br><img src="https://s2.loli.net/2025/01/20/y5v6fATGs3p7Ld8.png" alt="image.png"><br><em>↑通过前四列特征值（x），预测最后一列标签值（y）</em><br><em>每一行称为样本</em><br><em>有些数据集可以没有标签值（聚类、分类）</em></li>
-</ul>
-<h2 id="2、算法的分类"><a href="#2、算法的分类" class="headerlink" title="2、算法的分类"></a>2、算法的分类</h2><ul>
-<li><p>按照<strong>标签值</strong>是：</p>
+<h1 id="二、特征工程"><a href="#二、特征工程" class="headerlink" title="二、特征工程"></a>二、特征工程</h1><p><em><strong>具体代码见Python&gt;MachineLearning文件中的==feature_engineering.py==文件</strong></em></p>
 <ul>
-<li>类别：分类问题</li>
-<li>连续型数据：回归问题</li>
-<li>无：无监督学习</li>
+<li>训练集和测试集所进行的特征工程应该是相同的，所以<strong>对x_test进行特征工程应该用x_train的特征工程处理方法</strong>，而不是单独对x_test进行又一次特征工程！</li>
+</ul>
+<h2 id="1、数据集"><a href="#1、数据集" class="headerlink" title="1、数据集"></a>1、数据集</h2><h3 id="（1）可用数据集"><a href="#（1）可用数据集" class="headerlink" title="（1）可用数据集"></a>（1）可用数据集</h3><ul>
+<li>来源：<ul>
+<li>平时：<ul>
+<li>公司内部</li>
+<li>数据接口</li>
+<li>机构内部</li>
 </ul>
 </li>
-<li><p>分为==<strong>监督学习（supervised learning）和无监督学习（unsupervised learning）</strong>==</p>
-<ul>
-<li>监督学习：==分类、回归（有特征值、<strong>有标签值</strong>）==</li>
-<li>无监督学习：==聚类（有特征值、<strong>无标签值</strong>）==</li>
-</ul>
-</li>
-<li><p>算法：</p>
-<ul>
-<li>监督学习（预测）：<ul>
-<li>分类问题：<strong>k-近邻算法、贝叶斯算法、决策树与随机森林、逻辑回归</strong></li>
-<li>回归问题：<strong>线性回归、岭回归</strong></li>
-</ul>
-</li>
-<li>无监督学习：<ul>
-<li>聚类：<strong>k-means</strong></li>
+<li>学习：<ul>
+<li><strong>sklearn</strong>自带少量数据集</li>
+<li><strong>kaggle</strong>大量数据集</li>
+<li>UCI 收集的数据集</li>
+<li>阿里云的<strong>天池</strong>数据集</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h2 id="3、开发流程"><a href="#3、开发流程" class="headerlink" title="3、开发流程"></a>3、开发流程</h2><ol>
-<li>获取数据</li>
-<li>数据处理</li>
-<li>特征工程</li>
-<li>机器学习算法训练，得到模型</li>
-<li>模型评估（必要时返回第二步再逐步修改）</li>
-<li>实际应用<br><img src="https://s2.loli.net/2025/01/20/jRITXwUtS7LmfHr.png" alt="image.png"></li>
+<h3 id="（2）Sklearn数据集"><a href="#（2）Sklearn数据集" class="headerlink" title="（2）Sklearn数据集"></a>（2）Sklearn数据集</h3><ul>
+<li>Scikit-learn，Python的机器学习库<ul>
+<li>包含：分类、聚类、回归、特征工程、模型选择与调优</li>
+</ul>
+</li>
+</ul>
+<h4 id="①数据集"><a href="#①数据集" class="headerlink" title="①数据集"></a>①数据集</h4><ul>
+<li>sklearn.datasets（需要import导入）</li>
+<li>获取方法：<ul>
+<li>datasets.load_数据集名字()：<strong>获取小规模数据集</strong>，sklearn自带<ul>
+<li>例如：sklearn.datasets.load_iris()，获取鸢尾花数据集</li>
+</ul>
+</li>
+<li>datasets.fetch_数据集名字(data_home=数据集下载的目录 , subset= )：<strong>获取大规模数据集</strong>，需要从网上下载，data_home默认为 ./scikit_learn_data/，subset（可省略）选择需要加载的数据集，有’train’、’test’、’all’</li>
+</ul>
+</li>
+</ul>
+<h4 id="②使用"><a href="#②使用" class="headerlink" title="②使用"></a>②使用</h4><ul>
+<li>load和fetch返回的都是Bunch类型的数据（继承自字典）<ul>
+<li>键-值对：<ul>
+<li>data：特征值</li>
+<li>target：标签值</li>
+<li>DESCR：数据集的描述</li>
+<li>feature_names：特征值的名字</li>
+<li>target_names：标签值的名字</li>
+</ul>
+</li>
+<li>获取属性：<ul>
+<li>bunch[‘key’] = value</li>
+<li>bunch.key = value</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="③-划分"><a href="#③-划分" class="headerlink" title="③==划分=="></a>③==划分==</h4><ul>
+<li>数据不能全部用来训练，需要有<strong>测试数据集</strong></li>
+<li>分为：<ol>
+<li>训练数据：构建模型（70~80%）</li>
+<li>测试数据：评估模型（20~30%）</li>
 </ol>
+</li>
+<li>sklearn.model_selection.train_test_split(特征值 , 标签值 , test_size= , random_state= )<ul>
+<li>参数（可省略）：<ul>
+<li>test_size=：测试集的大小比例（如：0.2，默认 0.25）</li>
+<li>random_state=：随机数种子，不同的采样</li>
+</ul>
+</li>
+<li>return：训练集特征值、测试集特征值、训练集标签值、测试集标签值（<em>注意顺序</em>，可以起名：<strong>x_train、x_test、y_train、y_test</strong>）</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、特征工程介绍"><a href="#2、特征工程介绍" class="headerlink" title="2、特征工程介绍"></a>2、特征工程介绍</h2><ul>
+<li>处理数据，使特征能在算法中发挥更好的作用</li>
+<li>工具：<ul>
+<li>sklearn：特征工程</li>
+<li>pandas：数据清洗、数据处理</li>
+</ul>
+</li>
+</ul>
+<h2 id="3、特征提取"><a href="#3、特征提取" class="headerlink" title="3、特征提取"></a>3、特征提取</h2><ul>
+<li>将任意数据（如文本、图像等）转换成可用于机器学习算法的数字特征（特征值化）<ul>
+<li>字典特征提取（特征离散化）</li>
+<li>文本特征提取</li>
+<li>图像特征提取（深度学习）</li>
+</ul>
+</li>
+</ul>
+<h3 id="（1）对字典特征提取"><a href="#（1）对字典特征提取" class="headerlink" title="（1）对字典特征提取"></a>（1）对字典特征提取</h3><ul>
+<li>类别 -&gt; <strong>one-hot编码</strong></li>
+<li>sklearn.feature_extraction.DictVectorizer(sparse= )<ul>
+<li>one-hot编码需要<strong>sparse=False</strong>，默认<strong>sparse=True</strong>（也可以sparse=True并对返回的矩阵.<strong>toarray</strong>()，输出one-hot编码矩阵）</li>
+<li>DictVectorizer.fit_transform(data)<ul>
+<li>data为<strong>字典的可迭代对象</strong></li>
+<li>return：<ul>
+<li>sparse=True -&gt; sparse矩阵（稀疏矩阵）：将非零值用位置表示，节省内存</li>
+<li>sparse=False -&gt; one-hot编码的矩阵</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DictVectorizer.get_feature_names_out()：获取每一列的名字</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python">data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">'city'</span><span class="token punctuation">:</span> <span class="token string">'北京'</span><span class="token punctuation">,</span><span class="token string">'temperature'</span><span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token punctuation">{</span><span class="token string">'city'</span><span class="token punctuation">:</span> <span class="token string">'上海'</span><span class="token punctuation">,</span><span class="token string">'temperature'</span><span class="token punctuation">:</span><span class="token number">60</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token punctuation">{</span><span class="token string">'city'</span><span class="token punctuation">:</span> <span class="token string">'深圳'</span><span class="token punctuation">,</span><span class="token string">'temperature'</span><span class="token punctuation">:</span><span class="token number">30</span><span class="token punctuation">}</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true"># 数据要是字典的迭代器，可以列表包含字典</span>
+
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token comment" spellcheck="true"># 1、实例化一个转换器类：</span>
+
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> trans <span class="token operator">=</span> DictVectorizer<span class="token punctuation">(</span>sparse<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># one-hot编码需要sparse=False</span>
+
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token comment" spellcheck="true"># 2、调用fit_transform()</span>
+
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> data_new <span class="token operator">=</span> trans<span class="token punctuation">.</span>fit_transform<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"new data:\n"</span><span class="token punctuation">,</span> data_new<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"feature names:\n"</span><span class="token punctuation">,</span> trans<span class="token punctuation">.</span>get_feature_names_out<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>返回的one-hot编码的矩阵：<br><img src="https://s2.loli.net/2025/01/21/2XqvH8BzCMdmGIj.png" alt="image.png"></p>
+<ul>
+<li>应用场景：<ul>
+<li>数据集的类别特征多<ol>
+<li>特征 -&gt; 字典类型</li>
+<li>DictVectorizer</li>
+</ol>
+</li>
+<li>拿到的数据是字典类型</li>
+</ul>
+</li>
+</ul>
+<h3 id="（2）对文本特征提取"><a href="#（2）对文本特征提取" class="headerlink" title="（2）对文本特征提取"></a>（2）对文本特征提取</h3><ul>
+<li>单词作为特征（特征词）</li>
+</ul>
+<h4 id="①提取特征词次数"><a href="#①提取特征词次数" class="headerlink" title="①提取特征词次数"></a>①提取特征词次数</h4><ul>
+<li>sklearn.feature_extraction.text.CountVectorizer()<ul>
+<li>可省略参数：stop_words=[ ]（不统计的词）</li>
+<li>DictVectorizer.fit_transform(data)<ul>
+<li>data为<strong>文本或字符串的可迭代对象</strong></li>
+<li>return：sparse矩阵（sparse矩阵.<strong>toarray</strong>()，输出one-hot编码矩阵）</li>
+</ul>
+</li>
+<li>return：词频矩阵（单词计数，且去掉字母等无关紧要的字符）<br><strong>英文</strong>文本：</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python">text <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"life is short,i like like python"</span><span class="token punctuation">,</span>
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token string">"life is too long,i dislike python"</span><span class="token punctuation">]</span>
+
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token comment" spellcheck="true"># 类似dict_demo()</span>
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> trans <span class="token operator">=</span> CountVectorizer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> text_new <span class="token operator">=</span> trans<span class="token punctuation">.</span>fit_transform<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> 
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token comment" spellcheck="true"># print("new text:\n", text_new) # 返回sparse矩阵，不方便观察</span>
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"new text:\n"</span><span class="token punctuation">,</span> text_new<span class="token punctuation">.</span>toarray<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"feature names:\n"</span><span class="token punctuation">,</span> trans<span class="token punctuation">.</span>get_feature_names_out<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>返回的one-hot编码的矩阵：<br><img src="https://s2.loli.net/2025/01/21/KXHOnYlbDpT6Lzx.png" alt="image.png"></p>
+<p><em>如果是<strong>中文</strong>文本，导入<strong>jieba（结巴）库</strong>，用jieba自动分词后再进行类似英文的文本特征提取（见文件）</em></p>
+<h4 id="②提取关键词"><a href="#②提取关键词" class="headerlink" title="②提取关键词"></a>②提取关键词</h4><ul>
+<li><p><strong>关键词</strong>：在某一文章中出现多次，其他文章中出现很少，适合用来文章分类</p>
+</li>
+<li><p><strong>Tf-idf</strong>：</p>
+<ul>
+<li>Tf：词频，某个词在给定文章中出现的频率<ul>
+<li>Tf = 该文章中词语出现次数/该文章的总词数</li>
+</ul>
+</li>
+<li>idf：逆向文档频率，一个词的普遍重要性的度量<ul>
+<li>idf = lg(语料库中的文章总数 / (含有该词的文章总数+1 ))</li>
+</ul>
+</li>
+<li>Tf-idf = Tf × idf，可以理解为某词在某文章中的重要程度</li>
+</ul>
+</li>
+<li><p>sklearn.feature_extraction.text.TfidfVectorizer()</p>
+<ul>
+<li>可省略参数：stop_words=[ ]（不统计的词）</li>
+<li>TfidfVectorizer.fit_transform(data)<ul>
+<li>data为<strong>文本或字符串的可迭代对象</strong></li>
+<li>return：sparse矩阵（sparse矩阵.<strong>toarray</strong>()，输出one-hot编码矩阵）</li>
+</ul>
+</li>
+<li>return：词的权重矩阵（数字越大越重要）</li>
+</ul>
+</li>
+</ul>
+<h2 id="4、特征预处理"><a href="#4、特征预处理" class="headerlink" title="4、特征预处理"></a>4、特征预处理</h2><ul>
+<li>将原始特征数据转换成更适合算法模型的特征数据</li>
+<li>数值型数据的无量纲化：<strong>避免特征间量级的支配影响</strong><ul>
+<li>归一化</li>
+<li>标准化</li>
+</ul>
+</li>
+<li>sklearn.preprocessing</li>
+</ul>
+<h3 id="（1）归一化"><a href="#（1）归一化" class="headerlink" title="（1）归一化"></a>（1）归一化</h3><ul>
+<li><p>将数据映射到一个区间内（默认 [0 , 1] 区间）<br><img src="https://s2.loli.net/2025/01/21/MxNwbIK5Szrhe8f.png" alt="image.png"></p>
+</li>
+<li><p>sklearn.preprocessing.MinMaxScaler(feature_range= )</p>
+<ul>
+<li>feature_range=：映射到的区间，默认为(0 , 1)</li>
+<li>MinMaxScaler.fit_transform(data)<ul>
+<li>data的格式必须为：ndarray，形状 [样本数 , 特征数]</li>
+<li>return：映射后形状相同的ndarray</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>缺点</strong>：异常值一般是最大值、最小值，所以归一化易受影响，<strong>鲁棒性（稳定性）较差</strong>（只适合传统精确小数据）</p>
+</li>
+</ul>
+<h3 id="（2）标准化"><a href="#（2）标准化" class="headerlink" title="（2）标准化"></a>（2）标准化</h3><ul>
+<li><p>将数据正态标准化为均值为0，标准差为1的范围内<br><img src="https://s2.loli.net/2025/01/22/Q6gt2fbV79UDewI.png" alt="image.png"></p>
+</li>
+<li><p>sklearn.preprocessing.StandardScaler()</p>
+<ul>
+<li>每列数据转换为均值为0，标准差为1</li>
+<li>StandardScaler.fit_transform(data)<ul>
+<li>data的格式必须为：ndarray，形状 [样本数 , 特征数]</li>
+<li>return：转换后形状相同的ndarray</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>优点</strong>：对于有一定数据量的数据集来说，异常值对标准化的影响不大，<strong>比较稳定</strong>（适合现代嘈杂的大数据环境）</p>
+</li>
+</ul>
+<h2 id="5、特征降维"><a href="#5、特征降维" class="headerlink" title="5、特征降维"></a>5、特征降维</h2><ul>
+<li>对样本特征矩阵 [样本数 , 特征数] 降维，<strong>降低特征个数（列数）</strong>，特征数就是维度数</li>
+<li><strong>效果：特征与特征之间不相关</strong><ul>
+<li>相关特征：如 降雨量与相对湿度</li>
+<li>不相关特征：减少冗余信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="（1）特征选择"><a href="#（1）特征选择" class="headerlink" title="（1）特征选择"></a>（1）特征选择</h3><ul>
+<li>从原有特征中找出主要特征</li>
+<li>sklearn.feature_selection</li>
+</ul>
+<h4 id="①Filter过滤式"><a href="#①Filter过滤式" class="headerlink" title="①Filter过滤式"></a>①Filter过滤式</h4><ul>
+<li>方法：<ul>
+<li><p>方差选择法：过滤掉所有小方差特征</p>
+<ul>
+<li>sklearn.feature_selection.VarianceThreshold(threshold= )<ul>
+<li>threshold= ：过滤的方差阈值，默认为0</li>
+<li>VarianceThreshold.fit_transform(data)<ul>
+<li>data的格式必须为：ndarray，形状 [样本数 , 特征数]</li>
+<li>return：删除低方差特征后的ndarray</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>相关系数法：过滤掉相关性大的特征（ | r | 接近1）</p>
+<ul>
+<li>皮尔逊相关系数：<br>  <img src="https://s2.loli.net/2025/01/22/nfza3XqMEC4k1gu.png" alt="image.png"></li>
+<li>from scipy.stats import pearsonr<ul>
+<li>pearsonr(feat1 , feat2)<ul>
+<li>feat1、2都是特征列</li>
+<li>return：（相关系数，P_值）（P_越小相关性越大、越显著）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>得到的相关性很高的特征：<ul>
+<li>只选择其中一个</li>
+<li>加权求和作为新特征替代</li>
+<li>主成分分析</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="②Embeded嵌入式"><a href="#②Embeded嵌入式" class="headerlink" title="②Embeded嵌入式"></a>②Embeded嵌入式</h4><ul>
+<li>方法：<ul>
+<li>决策树（见后面章节）</li>
+<li>正则化（见后面章节）</li>
+<li>深度学习</li>
+</ul>
+</li>
+</ul>
+<h3 id="（2）主成分分析"><a href="#（2）主成分分析" class="headerlink" title="（2）主成分分析"></a>（2）主成分分析</h3><ul>
+<li><strong>PCA</strong>，高维数据 -&gt; 低维数据，可能涉及舍弃数据、增加变量</li>
+<li><strong>作用</strong>：降低维数（复杂度），同时减少信息损失</li>
+<li>应用：回归分析、聚类分析</li>
+<li>找到合适的直线，根据投影得出主成分分析结果</li>
+<li>sklearn.decomposition.PCA(n_components= )<ul>
+<li>n_components= ：<ul>
+<li><strong>小数</strong>：保留百分之多少的信息</li>
+<li><strong>整数</strong>：减少到多少特征</li>
+</ul>
+</li>
+<li>PCA.fit_transform(data)<ul>
+<li>data的格式为：二维数组，形状 [样本数 , 特征数]</li>
+<li>return：降维后指定维数（特征数）的ndarray</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="案例：Instacart市场篮子分析（数据处理部分）"><a href="#案例：Instacart市场篮子分析（数据处理部分）" class="headerlink" title="- 案例：Instacart市场篮子分析（数据处理部分）"></a>- 案例：Instacart市场篮子分析（数据处理部分）</h3><p><em><strong>具体代码见Python&gt;MachineLearning文件中的==instacart.ipynb==文件</strong></em></p>
 
                 
             </div>
@@ -567,7 +833,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://nefelibatabigr.github.io/2025/02/04/ji-qi-xue-xi-2-ji-ben-gai-nian/">https://nefelibatabigr.github.io/2025/02/04/ji-qi-xue-xi-2-ji-ben-gai-nian/</a>
+                    <a href="https://nefelibatabigr.github.io/2025/02/05/ji-qi-xue-xi-3-te-zheng-gong-cheng/">https://nefelibatabigr.github.io/2025/02/05/ji-qi-xue-xi-3-te-zheng-gong-cheng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -780,9 +1046,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2025/02/05/ji-qi-xue-xi-3-te-zheng-gong-cheng/">
                     <div class="card-image">
@@ -799,9 +1066,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-02-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -818,6 +1085,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -840,30 +1108,30 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2025/02/02/sheng-hua-dai-xie/">
+                <a href="/2025/02/04/ji-qi-xue-xi-2-ji-ben-gai-nian/">
                     <div class="card-image">
                         
-                        <img src="/medias/cover/biochem.jpg" class="responsive-img" alt="生物化学代谢">
+                        <img src="/medias/cover/ml1.png" class="responsive-img" alt="机器学习2——基本概念">
                         
-                        <span class="card-title">生物化学代谢</span>
+                        <span class="card-title">机器学习2——基本概念</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            生物化学课程代谢反应的特征总结。
+                            机器学习笔记2：基本概念部分，学习内容为黑马程序员的b站视频。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/bio1/" class="post-category">
-                                    生物
+                            <a href="/categories/ml1/" class="post-category">
+                                    机器学习
                                 </a>
                             
                             
@@ -873,8 +1141,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/biochem2/">
-                        <span class="chip bg-color">生化</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/ml2/">
+                        <span class="chip bg-color">机器学习</span>
                     </a>
                     
                 </div>
