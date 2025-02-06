@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="机器学习1——Pandas, NeBIGR&#39;s Blog">
+    <meta name="keywords" content="机器学习4——补充：数据预处理、转换器和预估器, NeBIGR&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>机器学习1——Pandas | NeBIGR&#39;s Blog</title>
+    <title>机器学习4——补充：数据预处理、转换器和预估器 | NeBIGR&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -291,12 +291,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/pandas1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">机器学习1——Pandas</h1>
+                    <h1 class="description center-align post-title">机器学习4——补充：数据预处理、转换器和预估器</h1>
                 </div>
             </div>
         </div>
@@ -412,10 +412,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/pandas/">
-                                <span class="chip bg-color">pandas</span>
-                            </a>
-                        
                             <a href="/tags/python/">
                                 <span class="chip bg-color">python</span>
                             </a>
@@ -449,7 +445,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2025-01-29
+                    2025-02-06
                 </div>
                 
 
@@ -463,14 +459,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    960
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    3 分
                 </div>
                 
 
@@ -490,275 +486,94 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <ul>
-<li>Pandas 是 Python 语言的一个扩展程序库，用于数据分析。</li>
-<li>Pandas 名字衍生自术语 “panel data”（面板数据）和 “Python data analysis”（Python 数据分析）。</li>
-<li>Pandas 是一个开放源码、BSD 许可的库，提供高性能、易于使用的数据结构和数据分析工具。</li>
-<li>Pandas 一个强大的分析结构化数据的工具集，基础是 Numpy（提供高性能的矩阵运算）。</li>
-</ul>
+                <p><strong>机器学习是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。</strong></p>
 <hr>
-<h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><ul>
-<li>panel + data + analysis（panel data 面板数据）</li>
-<li>数据处理工具</li>
-</ul>
-<h2 id="Why-pandas？"><a href="#Why-pandas？" class="headerlink" title="- Why pandas？"></a>- Why pandas？</h2><ul>
-<li>便捷的数据处理能力</li>
-<li>读取文件方便</li>
-<li>封装了Matplotlib、Numpy的画图和计算</li>
-</ul>
-<h1 id="二、核心数据结构"><a href="#二、核心数据结构" class="headerlink" title="二、核心数据结构"></a>二、核心数据结构</h1><p><em><strong>具体介绍代码见Python&gt;pandas文件中的==data_structure.ipynb==文件</strong></em></p>
 <ul>
-<li><strong>==dataframe==</strong></li>
-<li>series<br><em>理解：DataFrame是Series的容器</em></li>
-</ul>
-<h2 id="1、DataFrame"><a href="#1、DataFrame" class="headerlink" title="1、DataFrame"></a>1、DataFrame</h2><h3 id="（1）基本"><a href="#（1）基本" class="headerlink" title="（1）基本"></a>（1）基本</h3><ul>
-<li>结构：类似二维数组，有行、列索引</li>
-<li>属性：shape、index、columns、values、T（转置）</li>
-<li>方法：head()、tail()</li>
-</ul>
-<h3 id="（2）索引的设置"><a href="#（2）索引的设置" class="headerlink" title="（2）索引的设置"></a>（2）索引的设置</h3><ul>
-<li>修改行列索引值（只能整体修改）</li>
-<li>重设索引</li>
-<li>设置新索引</li>
-</ul>
-<h3 id="（3）MultiIndex"><a href="#（3）MultiIndex" class="headerlink" title="（3）MultiIndex"></a>（3）MultiIndex</h3><ul>
-<li>MultiIndex是设置了多索引之后的DataFrame，可以存储三维数据</li>
-<li>MultiIndex的属性有names、levels</li>
-</ul>
-<h2 id="2、Series"><a href="#2、Series" class="headerlink" title="2、Series"></a>2、Series</h2><ul>
-<li><p>带索引的一维数组<br><img src="https://s2.loli.net/2025/01/14/oTAGCauzhKpjsRH.png" alt="image.png"></p>
-</li>
-<li><p>属性：index、values</p>
-</li>
-<li><p>方法：创建Series、head()、tail()</p>
-</li>
-</ul>
-<h1 id="三、基本数据操作"><a href="#三、基本数据操作" class="headerlink" title="三、基本数据操作"></a>三、基本数据操作</h1><p><em><strong>具体代码见Python&gt;pandas文件中的==basic_data_operations.ipynb==文件</strong></em></p>
-<h2 id="1、索引操作"><a href="#1、索引操作" class="headerlink" title="1、索引操作"></a>1、索引操作</h2><ul>
-<li>直接索引（必须先列后行）</li>
-<li>按名字索引（loc，先行后列）</li>
-<li>按数字索引（iloc，先行后列）</li>
-<li>组合索引（loc、iloc，数字和名字混用）</li>
-<li>isin()：判断某一行是否存在某个值</li>
-</ul>
-<h2 id="2、赋值操作"><a href="#2、赋值操作" class="headerlink" title="2、赋值操作"></a>2、赋值操作</h2><ul>
-<li>整列修改</li>
-<li>索引到某个值后修改</li>
-</ul>
-<h2 id="3、排序操作"><a href="#3、排序操作" class="headerlink" title="3、排序操作"></a>3、排序操作</h2><ul>
-<li>对内容排序（.sort_values(by=’ ‘, ascending=<strong>True</strong>/False)）</li>
-<li>对索引排序（.sort_index()）<br><em>对于Series来说只有一维，不用考虑按照哪个字段排序</em></li>
-</ul>
-<h2 id="4、运算操作"><a href="#4、运算操作" class="headerlink" title="4、运算操作"></a>4、运算操作</h2><p><em>主要是DataFrame</em></p>
-<ul>
-<li><p>算术运算（add()）</p>
-</li>
-<li><p>逻辑运算</p>
-<ul>
-<li>逻辑运算符（&lt;、&gt;、|、&amp;）</li>
-<li>逻辑运算函数（**query(查找的字符串)**、isin()）</li>
+<li>深度学习 ⊆ <strong>机器学习</strong> ⊆ 人工智能<ul>
+<li>机器学习是人工智能的一个实现途径</li>
+<li>深度学习是由机器学习发展而来</li>
 </ul>
 </li>
-<li><p>统计运算</p>
-<ul>
-<li>统计指标：count、min、max、mean、median、var、std</li>
-<li>describe()：直接得出统计指标<ul>
-<li>效果：<img src="https://s2.loli.net/2025/01/14/gewhsKTdoXjfzYp.png" alt="image.png"></li>
+<li>应用领域：传统预测、图像识别、自然语言处理</li>
+<li>理论书：《机器学习》“西瓜书”、《统计学习方法》</li>
+<li>库：<strong>sklearn</strong></li>
+<li>==<strong>模型选择</strong>==：<br><img src="https://s2.loli.net/2025/02/01/kAj2tX7rLOn5FMq.png" alt="image.png"></li>
 </ul>
-</li>
-<li>返回索引：idxmin()、idxmax()</li>
-<li>累计统计函数：cumsum()、cummax()、cummin()、cumprod()</li>
-<li><strong>配合画图函数plot()：默认为折线图</strong><ul>
-<li>cumsum()画图效果：<em>（记得先对时间排序再累加）</em><img src="https://s2.loli.net/2025/01/14/63nlHfO1ZALTWgb.png" alt="image.png"></li>
+<h1 id="三、补充：数据预处理"><a href="#三、补充：数据预处理" class="headerlink" title="三、补充：数据预处理"></a>三、补充：数据预处理</h1><ul>
+<li>数据分为：<ul>
+<li>连续型数据：一个区间内可以取任意值（如：身高、体重等）</li>
+<li>非连续型数据：只能取某些特定的值（如：性别、民族、血型等）</li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p>自定义运算（apply(func, axis= )）</p>
-<ul>
-<li>func：自定义函数</li>
-<li>axis：默认为按列运算axis=0</li>
+<h2 id="1、去除唯一属性"><a href="#1、去除唯一属性" class="headerlink" title="1、去除唯一属性"></a>1、去除唯一属性</h2><ul>
+<li>通常是一些id属性，不能表示数据本身的分布规律</li>
+</ul>
+<h2 id="2、处理缺失值"><a href="#2、处理缺失值" class="headerlink" title="2、处理缺失值"></a>2、处理缺失值</h2><h3 id="（1）方法"><a href="#（1）方法" class="headerlink" title="（1）方法"></a>（1）方法</h3><ul>
+<li>直接使用含有缺失值的特征（适用于某个数据比较偏离原始的所有数据）</li>
+<li>删除含有缺失值的特征（适用于某个特征含有大量缺失值、少量有效值，或含有的缺失值的数据数量相较于总体数据很少，删除影响不大）</li>
+<li>缺失值插补：均值插补、同类均值插补、建模预测、高维映射、多重插补、手动插补、极大似然估计、压缩感知、矩阵补全</li>
+</ul>
+<h3 id="（2）缺失值插补方法"><a href="#（2）缺失值插补方法" class="headerlink" title="（2）缺失值插补方法"></a>（2）缺失值插补方法</h3><ul>
+<li>均值插补：数据可度量-&gt;平均值，不可度量-&gt;众数</li>
+<li>同类均值插补：先分类再用平均值插补</li>
+<li>建模预测：将缺失值作为预测目标，利用现有的机器学习算法<ul>
+<li><strong>缺点</strong>：如果其他属性与缺失值无关，则预测无效；如果相关，则没必要考虑缺失值；一般介于两者之间</li>
 </ul>
 </li>
-</ul>
-<h2 id="5、画图操作"><a href="#5、画图操作" class="headerlink" title="5、画图操作"></a>5、画图操作</h2><ul>
-<li>(Series).plot()：默认折线图（见上面运算操作中的统计运算）</li>
-<li>(DataFrame).plot()：参数x、y、kind（图的类型）<ul>
-<li><p>API：<br>  <img src="https://s2.loli.net/2025/01/14/XwVSvbd3mol6BcY.png" alt="image.png"></p>
-</li>
-<li><p>散点图效果：<em>（kind=’scatter’）</em><img src="https://s2.loli.net/2025/01/14/RZU5ELAzhwGgeX6.png" alt="image.png"></p>
-</li>
+<li>高维映射：用独热编码（one-hot编码）把属性映射到高维空间<ul>
+<li><strong>优点</strong>：最精确</li>
+<li><strong>缺点</strong>：计算量大，所需样本量大</li>
 </ul>
 </li>
-</ul>
-<h1 id="四、文件读取与存储"><a href="#四、文件读取与存储" class="headerlink" title="四、文件读取与存储"></a>四、文件读取与存储</h1><p><em><strong>具体代码见Python&gt;pandas文件中的==file_reading.ipynb==文件</strong></em></p>
-<ul>
-<li>numpy缺点：读不了字符串</li>
-<li>大部分数据文件pandas都可以读取<br><img src="https://s2.loli.net/2025/01/14/fIjwL14ZiH3k9Wp.png" alt="image.png"><br><em>pandas可读取和储存的文件↑</em></li>
-</ul>
-<h2 id="1、csv文件"><a href="#1、csv文件" class="headerlink" title="1、csv文件"></a>1、csv文件</h2><h3 id="读取："><a href="#读取：" class="headerlink" title="读取："></a>读取：</h3><ul>
-<li>pd.read_csv(路径)<ul>
-<li>参数（可省略）：<ul>
-<li>usecols：只读取这些列</li>
-<li>names：命名列索引</li>
+<li>多重插补：将缺失值视为一个计算后的值加一个随机噪声，不同噪声得到多个插补值，根据实际情况选择合适的插补值</li>
+<li>手动插补：主观估计插补值，需要符合现实规律<ul>
+<li><strong>优点</strong>：效果比较好</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<h3 id="存储："><a href="#存储：" class="headerlink" title="存储："></a>存储：</h3><ul>
-<li>(DataFrame).to_csv(路径)<ul>
-<li>参数（可省略）：<ul>
-<li>columns：只保存指定的列，用列表选取</li>
-<li>mode：读写方式，默认”w“重写，“a“追加</li>
-<li>index：默认为True（保留<strong>行</strong>索引），False不保留</li>
-<li>header：默认为True（保留<strong>列</strong>索引），False不保留</li>
+<h2 id="3、数据标准化"><a href="#3、数据标准化" class="headerlink" title="3、数据标准化"></a>3、数据标准化</h2><ul>
+<li>将某个属性缩放到特定范围</li>
+<li>原因：某些算法要求数据零均值、单位方差；<strong>消除不同属性不同量级的影响</strong></li>
+<li>方法：<ul>
+<li>min-max标准化（<strong>归一化</strong>）：将所有值映射到（0,1）上均匀分布，上下界映射为0、1</li>
+<li>z-score标准化（<strong>规范化</strong>）：（原数据-均值）÷标准差，进行正态分布标准化</li>
 </ul>
 </li>
 </ul>
-</li>
+<h1 id="四、sklearn转换器和预估器"><a href="#四、sklearn转换器和预估器" class="headerlink" title="四、sklearn转换器和预估器"></a>四、sklearn转换器和预估器</h1><ul>
+<li>转换器（transformer）、预估器（estimator）</li>
+<li><strong>转换器</strong>用于特征工程、特征处理，<strong>预估器</strong>用于调用模型、模型训练，注意区分！！！</li>
 </ul>
-<h2 id="2、hdf5文件"><a href="#2、hdf5文件" class="headerlink" title="2、hdf5文件"></a>2、hdf5文件</h2><ul>
-<li>二进制文件，不能直接预览</li>
-<li>具有许多优点</li>
-<li>一个键对应一个DataFrame，可以理解成存储三维数据</li>
-</ul>
-<h3 id="读取：-1"><a href="#读取：-1" class="headerlink" title="读取："></a>读取：</h3><ul>
-<li>pd.read_hdf(路径 , key= )：多个键时必须指定key= <ul>
-<li>参数（可省略）：<ul>
-<li>mode：打开文件的模式</li>
+<h2 id="1、转换器"><a href="#1、转换器" class="headerlink" title="1、转换器"></a>1、转换器</h2><ul>
+<li><strong>特征工程处理</strong>第一步都要<strong>实例化</strong>一个转换器类，转换器可以看作特征工程方法的父类</li>
+<li>fit_transform()：<ul>
+<li>fit()：输入数据不处理，只计算每一列的均值和标准差</li>
+<li>transform()：数据转换，利用fit()得到的均值和标准差计算</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<h3 id="存储：-1"><a href="#存储：-1" class="headerlink" title="存储："></a>存储：</h3><ul>
-<li>(DataFrame).to_hdf(路径 , key= )：<strong>存储时key必须有</strong></li>
-</ul>
-<h2 id="3、json文件"><a href="#3、json文件" class="headerlink" title="3、json文件"></a>3、json文件</h2><ul>
-<li>前后端交互经常用到</li>
-</ul>
-<h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><ul>
-<li>pd.read_json(路径 , lines= )<ul>
-<li>参数：<ul>
-<li>orient：读取的json文件以什么形式展示，<strong>一般用”records”</strong></li>
-<li>lines：是否按行读取，填bool值，默认为False，<strong>一般需要指定为True</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><ul>
-<li>(DataFrame).to_json(路径 , key= )<ul>
-<li>参数：<ul>
-<li>orient：读取的json文件以什么形式展示，<strong>一般用”records”</strong></li>
-<li>lines：是否按行读取，填bool值，默认为False，<strong>一般需要指定为True</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="五、高级处理"><a href="#五、高级处理" class="headerlink" title="五、高级处理"></a>五、高级处理</h1><p><em><strong>具体代码见Python&gt;pandas文件中的==advanced_processing.ipynb==文件</strong></em></p>
-<ul>
-<li>缺失值处理</li>
-<li>数据离散化</li>
-<li>合并</li>
-<li>交叉表与透视表</li>
-<li>分组与聚合</li>
-</ul>
-<h2 id="1、缺失值处理"><a href="#1、缺失值处理" class="headerlink" title="1、缺失值处理"></a>1、缺失值处理</h2><h3 id="（1）How？"><a href="#（1）How？" class="headerlink" title="（1）How？"></a>（1）How？</h3><ul>
-<li>思路：<ol>
-<li>删除含有缺失值的样本</li>
-<li>替换/插补，一般用平均值 / 众数值替换</li>
+<h2 id="2、预估器"><a href="#2、预估器" class="headerlink" title="2、预估器"></a>2、预估器</h2><ul>
+<li>sklearn<strong>机器学习算法</strong>的实现，可以看作算法的父类</li>
+<li>分类、回归、无监督学习的所有算法都是estimator的子类</li>
+<li>步骤：<ol>
+<li><strong>实例化</strong>一个预估器（算法）</li>
+<li>训练，生成模型：调用 算法.fit(x_train , y_train)</li>
+<li>模型评估：<ul>
+<li>直接比对预测值与真实值：<ol>
+<li>y_pred = 算法.predict(x_test)</li>
+<li>y_test == y_pred ?</li>
 </ol>
 </li>
+<li>直接计算准确率：<ul>
+<li>accuracy = 算法.score(x_test, y_test)</li>
 </ul>
-<h3 id="（2）处理NaN"><a href="#（2）处理NaN" class="headerlink" title="（2）处理NaN"></a>（2）处理NaN</h3><ol>
-<li>判断是否存在NaN（结合np.any/np.all判断，或者直接加any()/all()）<ul>
-<li>pd.isnull(DataFrame)：缺失值的地方返回True</li>
-<li>pd.notnull(DataFrame)：不是缺失值的地方返回True</li>
-</ul>
-</li>
-<li>删除含有缺失值的样本<ul>
-<li>df.dropna(inplace= )：默认按行删除，默认inplace=False不修改原数据，生成新对象<br><strong>或</strong>：</li>
-</ul>
-</li>
-<li>替换/插补<ul>
-<li>平均值插补：df.loc[:, ‘xxx’] = df[‘xxx’].fillna(df[‘xxx’].mean())</li>
-<li>众数值插补：<ol>
-<li>counts = x_pred[feat].value_counts()</li>
-<li>x_pred.loc[:, feat] = x_pred[feat].fillna(counts.idxmax())</li>
-</ol>
 </li>
 </ul>
 </li>
 </ol>
-<h3 id="（3）处理非NaN的缺失值"><a href="#（3）处理非NaN的缺失值" class="headerlink" title="（3）处理非NaN的缺失值"></a>（3）处理非NaN的缺失值</h3><ol>
-<li>替换：符号 -&gt; np.nan<ul>
-<li>df.replace(to_replace=需要替换的东西 , value=np.nan)</li>
-</ul>
-</li>
-<li>处理NaN</li>
-</ol>
-<h2 id="2、数据离散化"><a href="#2、数据离散化" class="headerlink" title="2、数据离散化"></a>2、数据离散化</h2><ul>
-<li><p>用数据表示特征（取代字符串），便于后续运算</p>
-</li>
-<li><p>将连续数据分成多个离散区间，用不同的值代表落在区间<br><img src="https://s2.loli.net/2025/01/18/2R1feDQVIAc9q3t.png" alt="image.png"><br><strong>one-hot编码（独热编码/哑变量）</strong></p>
-</li>
-<li><p>数据离散化为了简化数据结构，让数据之间关系平等<br><em><strong>案例：股票的涨跌幅离散化，见文件</strong></em></p>
 </li>
 </ul>
-<h3 id="如何实现数据离散化？"><a href="#如何实现数据离散化？" class="headerlink" title="如何实现数据离散化？"></a>如何实现数据离散化？</h3><ol>
-<li>分组<ul>
-<li>自动分组：sr = pd.qcut(data , 组数)<ul>
-<li>自动分成等间距的组</li>
-</ul>
-</li>
-<li>自定义分组：sr = pd.cut(data , bins=[区间] )<ul>
-<li>区间列表内只用传各个区间边界值，如：bins = [150, 165, 180, 195] 分成三个区间</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>转换成独热编码（one-hot编码/哑变量）<ul>
-<li>pd.get_dummies(sr , prefix= 前缀 , <strong>dtype=int</strong>)</li>
-</ul>
-</li>
-</ol>
-<h2 id="3、合并"><a href="#3、合并" class="headerlink" title="3、合并"></a>3、合并</h2><h3 id="（1）按方向合并"><a href="#（1）按方向合并" class="headerlink" title="（1）按方向合并"></a>（1）按方向合并</h3><ul>
-<li>pd.concat([data1 , data2] , axis= )：默认axis=0竖直拼接</li>
-</ul>
-<h3 id="（2）按索引合并"><a href="#（2）按索引合并" class="headerlink" title="（2）按索引合并"></a>（2）按索引合并</h3><ul>
-<li>pd.merge(左表 , 右表 , how=”连接方式” , on=[索引])：默认how=”inner”内连接<br><img src="https://s2.loli.net/2025/01/18/lgniweWsYC24JcQ.png" alt="image.png"><br><em><strong>连接方式</strong>，与SQL类似，碰到不共有的键补NaN</em></li>
-</ul>
-<h2 id="4、交叉表与透视表"><a href="#4、交叉表与透视表" class="headerlink" title="4、交叉表与透视表"></a>4、交叉表与透视表</h2><ul>
-<li>探索两个变量直接的关系</li>
-</ul>
-<h3 id="（1）交叉表"><a href="#（1）交叉表" class="headerlink" title="（1）交叉表"></a>（1）交叉表</h3><ul>
-<li>寻找两数据列之间的关系</li>
-<li>pd.crosstab(数据列1 , 数据列2)：得到的是频数分布（先行索引，后列索引）<br><em><strong>pandas日期类型，如date = pd.to_datetime(stock.index)，用date.year/month/week等获取日期信息</strong></em></li>
-</ul>
-<h3 id="（2）透视表"><a href="#（2）透视表" class="headerlink" title="（2）透视表"></a>（2）透视表</h3><ul>
-<li>df.pivot_table([ ] , index=[ ])：直接得出频率</li>
-</ul>
-<h2 id="5、分组与聚合"><a href="#5、分组与聚合" class="headerlink" title="5、分组与聚合"></a>5、分组与聚合</h2><ul>
-<li><p>什么是分组与聚合：<br><img src="https://s2.loli.net/2025/01/19/3MJSqbXhd41pZQi.png" alt="image.png"><br><em>按类别分组，再经过统计函数聚合</em><br><strong>一般同时使用分组与聚合</strong></p>
-</li>
-<li><p>DataFrame方法：</p>
-<ul>
-<li>df.groupby(by=[“分组按照的列”])[“需要聚合的列”].func( )：func( )为聚合的统计函数，分组按照的列可以不止一个，放在列表给出</li>
-<li>例如：col.groupby(by=[‘color’])[‘price1’].max()</li>
-</ul>
-</li>
-<li><p>Series方法：</p>
-<ul>
-<li>df[“需要聚合的列”].groupby(by=df[“分组按照的列”]).func( )</li>
-<li>例如：col[‘price1’].groupby(by=col[‘color’]).max()</li>
-</ul>
-</li>
-</ul>
-<p><em><strong>星巴克零售店铺数据案例：见文件</strong></em></p>
-<h1 id="六、综合案例：电影数据分析"><a href="#六、综合案例：电影数据分析" class="headerlink" title="六、综合案例：电影数据分析"></a>六、综合案例：电影数据分析</h1><p><em><strong>具体代码见Python&gt;pandas文件中的==comprehensive_case.ipynb==文件</strong></em></p>
 
                 
             </div>
@@ -785,7 +600,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://nefelibatabigr.github.io/2025/01/29/ji-qi-xue-xi-1-pandas/">https://nefelibatabigr.github.io/2025/01/29/ji-qi-xue-xi-1-pandas/</a>
+                    <a href="https://nefelibatabigr.github.io/2025/02/06/ji-qi-xue-xi-4-bu-chong-shu-ju-chu-li/">https://nefelibatabigr.github.io/2025/02/06/ji-qi-xue-xi-4-bu-chong-shu-ju-chu-li/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -822,10 +637,6 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/pandas/">
-                                    <span class="chip bg-color">pandas</span>
-                                </a>
                             
                                 <a href="/tags/python/">
                                     <span class="chip bg-color">python</span>
@@ -1002,28 +813,86 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2025/01/30/sheng-xin-1-numpy-pandas/">
+                <a href="/2025/02/06/ji-qi-xue-xi-4-bu-chong-shu-ju-chu-li/">
                     <div class="card-image">
                         
-                        <img src="/medias/cover/numpy.png" class="responsive-img" alt="生信1：Numpy + Pandas">
+                        <img src="/medias/cover/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86.jpg" class="responsive-img" alt="机器学习4——补充：数据预处理、转换器和预估器">
                         
-                        <span class="card-title">生信1：Numpy + Pandas</span>
+                        <span class="card-title">机器学习4——补充：数据预处理、转换器和预估器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            生物信息学1：Numpy+Pandas，学习内容为生物信息学导论课程内容。
+                            机器学习笔记4：补充部分，学习内容为数据预处理b站视频与黑马程序员的b站视频。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-01-30
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ml1/" class="post-category">
+                                    机器学习
+                                </a>
+                            
+                            <a href="/categories/ml1/shuju1/" class="post-category">
+                                    数据处理
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/ml2/">
+                        <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/02/05/sheng-xin-2-r-yu-ji-yin-chai-yi-biao-da-go-fu-ji/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/cover/R.jpg" class="responsive-img" alt="生信2：R 与 基因差异表达、GO富集">
+                        
+                        <span class="card-title">生信2：R 与 基因差异表达、GO富集</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            生物信息学2：R语言、基因差异表达、GO富集，学习内容为生物信息学导论课程内容。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1039,68 +908,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/pandas/">
-                        <span class="chip bg-color">pandas</span>
+                    <a href="/tags/R/">
+                        <span class="chip bg-color">R</span>
                     </a>
                     
-                    <a href="/tags/numpy/">
-                        <span class="chip bg-color">numpy</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2025/01/27/html-css/">
-                    <div class="card-image">
-                        
-                        <img src="/medias/cover/html_css.jpg" class="responsive-img" alt="HTML + CSS">
-                        
-                        <span class="card-title">HTML + CSS</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            我的HTML与CSS学习笔记，内容来自coursera上的课程。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-01-27
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/qianduan1/" class="post-category">
-                                    前端
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/html/">
-                        <span class="chip bg-color">html</span>
-                    </a>
-                    
-                    <a href="/tags/css/">
-                        <span class="chip bg-color">css</span>
-                    </a>
-                    
-                    <a href="/tags/qianduan2/">
-                        <span class="chip bg-color">前端</span>
+                    <a href="/tags/gene2/">
+                        <span class="chip bg-color">基因</span>
                     </a>
                     
                 </div>
