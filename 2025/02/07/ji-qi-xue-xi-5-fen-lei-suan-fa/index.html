@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="机器学习4——补充：数据预处理、转换器和预估器, NeBIGR&#39;s Blog">
+    <meta name="keywords" content="机器学习5——分类算法, NeBIGR&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>机器学习4——补充：数据预处理、转换器和预估器 | NeBIGR&#39;s Blog</title>
+    <title>机器学习5——分类算法 | NeBIGR&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -291,12 +291,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/%E5%88%86%E7%B1%BB.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">机器学习4——补充：数据预处理、转换器和预估器</h1>
+                    <h1 class="description center-align post-title">机器学习5——分类算法</h1>
                 </div>
             </div>
         </div>
@@ -432,10 +432,6 @@
                                 机器学习
                             </a>
                         
-                            <a href="/categories/ml1/shuju1/" class="post-category">
-                                数据处理
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -445,28 +441,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2025-02-06
+                    2025-02-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-02-06
+                    2025-02-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    960
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    7 分
                 </div>
                 
 
@@ -499,79 +495,300 @@
 <li>库：<strong>sklearn</strong></li>
 <li>==<strong>模型选择</strong>==：<br><img src="https://s2.loli.net/2025/02/01/kAj2tX7rLOn5FMq.png" alt="image.png"></li>
 </ul>
-<h1 id="三、补充：数据预处理"><a href="#三、补充：数据预处理" class="headerlink" title="三、补充：数据预处理"></a>三、补充：数据预处理</h1><ul>
-<li>数据分为：<ul>
-<li>连续型数据：一个区间内可以取任意值（如：身高、体重等）</li>
-<li>非连续型数据：只能取某些特定的值（如：性别、民族、血型等）</li>
+<h1 id="五、分类算法"><a href="#五、分类算法" class="headerlink" title="五、分类算法"></a>五、分类算法</h1><p><em><strong>具体代码见Python&gt;MachineLearning文件中的==classification.py==文件</strong></em></p>
+<ul>
+<li>标签值：<strong>类别</strong></li>
+<li><strong>二分类问题</strong>见：逻辑回归与二分类（第六节）</li>
+</ul>
+<h2 id="1、kNN算法"><a href="#1、kNN算法" class="headerlink" title="1、kNN算法"></a>1、kNN算法</h2><ul>
+<li><p>k-近邻算法，k-nearest neighbor classification</p>
+</li>
+<li><p>根据k个“邻居”推断自身类别</p>
+</li>
+<li><p>k个最相似（特征空间上最邻近）的样本大多属于一个类别，则推断所求样本类别也是这个类别</p>
+</li>
+<li><p><strong>k值</strong>：</p>
+<ul>
+<li>过小：容易受异常值影响</li>
+<li>过大：容易受样本不均衡影响</li>
+</ul>
+</li>
+<li><p><strong>计算距离</strong>：</p>
+<ul>
+<li>欧几里得（欧式）距离：平方差求和开根</li>
+<li>曼哈顿距离：差绝对值求和</li>
+<li>闵可夫斯基距离：对欧式距离和曼哈顿距离公式的概括性的表述</li>
+</ul>
+</li>
+<li><p>==<strong>必须先做标准化再kNN，避免量级的支配影响！！！</strong>==</p>
+</li>
+<li><p><strong>优点</strong>：简单易实现</p>
+</li>
+<li><p><strong>缺点</strong>：</p>
+<ul>
+<li>k值选择不当影响精度</li>
+<li>计算量大，内存消耗大</li>
+</ul>
+</li>
+<li><p><strong>应用场景</strong>：小数据场景（几千~几万样本）</p>
+</li>
+</ul>
+<p><strong>API：</strong></p>
+<ul>
+<li>sklearn.neighbors.KNeighborsClassifier(n_neighbors= )<ul>
+<li>参数（可省略）：<ul>
+<li>n_neighbors= ：<strong>k值</strong>，默认=5</li>
+<li>algorithm= ：可选{‘auto’ , ‘ball_tree’ , ‘kd_tree’ , ‘brute’}，默认=’auto’，不同方法效率不同</li>
+<li>默认用欧氏距离</li>
+</ul>
+</li>
+<li>KNeighborsClassifier.fit(x_train , y_train)：训练</li>
+<li>KNeighborsClassifier.predict(x_test)：预测</li>
+<li>KNeighborsClassifier.score(x_test, y_test)：评估</li>
 </ul>
 </li>
 </ul>
-<h2 id="1、去除唯一属性"><a href="#1、去除唯一属性" class="headerlink" title="1、去除唯一属性"></a>1、去除唯一属性</h2><ul>
-<li>通常是一些id属性，不能表示数据本身的分布规律</li>
-</ul>
-<h2 id="2、处理缺失值"><a href="#2、处理缺失值" class="headerlink" title="2、处理缺失值"></a>2、处理缺失值</h2><h3 id="（1）方法"><a href="#（1）方法" class="headerlink" title="（1）方法"></a>（1）方法</h3><ul>
-<li>直接使用含有缺失值的特征（适用于某个数据比较偏离原始的所有数据）</li>
-<li>删除含有缺失值的特征（适用于某个特征含有大量缺失值、少量有效值，或含有的缺失值的数据数量相较于总体数据很少，删除影响不大）</li>
-<li>缺失值插补：均值插补、同类均值插补、建模预测、高维映射、多重插补、手动插补、极大似然估计、压缩感知、矩阵补全</li>
-</ul>
-<h3 id="（2）缺失值插补方法"><a href="#（2）缺失值插补方法" class="headerlink" title="（2）缺失值插补方法"></a>（2）缺失值插补方法</h3><ul>
-<li>均值插补：数据可度量-&gt;平均值，不可度量-&gt;众数</li>
-<li>同类均值插补：先分类再用平均值插补</li>
-<li>建模预测：将缺失值作为预测目标，利用现有的机器学习算法<ul>
-<li><strong>缺点</strong>：如果其他属性与缺失值无关，则预测无效；如果相关，则没必要考虑缺失值；一般介于两者之间</li>
-</ul>
+<h2 id="2、模型选择与调优"><a href="#2、模型选择与调优" class="headerlink" title="2、模型选择与调优"></a>2、模型选择与调优</h2><h3 id="（1）交叉验证"><a href="#（1）交叉验证" class="headerlink" title="（1）交叉验证"></a>（1）交叉验证</h3><ul>
+<li><p>n折交叉验证（cross-validation，CV）：将训练集再分为训练集与验证集，分成n份（任意1份作为验证集，其他n-1份作为训练集），<strong>轮流进行验证</strong>，得到n个准确率，求平均作为总准确率<br><img src="https://s2.loli.net/2025/01/22/enrhWTqO3pJA6cL.png" alt="image.png"><br><em>↑四折交叉验证</em></p>
 </li>
-<li>高维映射：用独热编码（one-hot编码）把属性映射到高维空间<ul>
-<li><strong>优点</strong>：最精确</li>
-<li><strong>缺点</strong>：计算量大，所需样本量大</li>
-</ul>
-</li>
-<li>多重插补：将缺失值视为一个计算后的值加一个随机噪声，不同噪声得到多个插补值，根据实际情况选择合适的插补值</li>
-<li>手动插补：主观估计插补值，需要符合现实规律<ul>
-<li><strong>优点</strong>：效果比较好</li>
-</ul>
+<li><p><strong>优点</strong>：让模型更加准确</p>
 </li>
 </ul>
-<h2 id="3、数据标准化"><a href="#3、数据标准化" class="headerlink" title="3、数据标准化"></a>3、数据标准化</h2><ul>
-<li>将某个属性缩放到特定范围</li>
-<li>原因：某些算法要求数据零均值、单位方差；<strong>消除不同属性不同量级的影响</strong></li>
-<li>方法：<ul>
-<li>min-max标准化（<strong>归一化</strong>）：将所有值映射到（0,1）上均匀分布，上下界映射为0、1</li>
-<li>z-score标准化（<strong>规范化</strong>）：（原数据-均值）÷标准差，进行正态分布标准化</li>
+<h3 id="（2）超参数搜索"><a href="#（2）超参数搜索" class="headerlink" title="（2）超参数搜索"></a>（2）超参数搜索</h3><ul>
+<li>超参数：需要手动指定的参数（如k值）</li>
+<li>网格搜索（Grid search）：预设几组超参数，每组采用交叉验证的方法评估，选出最优超参数</li>
+<li>sklearn.model_selection.GridSearchCV(estimator , param_grid= , cv= )<ul>
+<li><p>参数：</p>
+<ul>
+<li>estimator：算法实例</li>
+<li>param_grid=：estimator的超参数选择（字典形式）<ul>
+<li>如：{ ‘n_neighbors’ : [1 , 3 , 5] }</li>
 </ul>
 </li>
+<li>cv=：指定几折交叉检验（常用10折）</li>
 </ul>
-<h1 id="四、sklearn转换器和预估器"><a href="#四、sklearn转换器和预估器" class="headerlink" title="四、sklearn转换器和预估器"></a>四、sklearn转换器和预估器</h1><ul>
-<li>转换器（transformer）、预估器（estimator）</li>
-<li><strong>转换器</strong>用于特征工程、特征处理，<strong>预估器</strong>用于调用模型、模型训练，注意区分！！！</li>
-</ul>
-<h2 id="1、转换器"><a href="#1、转换器" class="headerlink" title="1、转换器"></a>1、转换器</h2><ul>
-<li><strong>特征工程处理</strong>第一步都要<strong>实例化</strong>一个转换器类，转换器可以看作特征工程方法的父类</li>
-<li>fit_transform()：<ul>
-<li>fit()：输入数据不处理，只计算每一列的均值和标准差</li>
-<li>transform()：数据转换，利用fit()得到的均值和标准差计算</li>
+</li>
+<li><p>GridSearchCV.fit(x_train , y_train)：训练</p>
+</li>
+<li><p>GridSearchCV.predict(x_test)：预测</p>
+</li>
+<li><p>GridSearchCV.score(x_test, y_test)：评估</p>
+</li>
+<li><p>属性：</p>
+<ul>
+<li>最佳超参数：.best_params_</li>
+<li>最佳结果：.best_score_</li>
+<li>最佳预估器：.best_estimator_</li>
+<li>交叉验证结果：.cv_results_</li>
 </ul>
 </li>
 </ul>
-<h2 id="2、预估器"><a href="#2、预估器" class="headerlink" title="2、预估器"></a>2、预估器</h2><ul>
-<li>sklearn<strong>机器学习算法</strong>的实现，可以看作算法的父类</li>
-<li>分类、回归、无监督学习的所有算法都是estimator的子类</li>
-<li>步骤：<ol>
-<li><strong>实例化</strong>一个预估器（算法）</li>
-<li>训练，生成模型：调用 算法.fit(x_train , y_train)</li>
-<li>模型评估：<ul>
-<li>直接比对预测值与真实值：<ol>
-<li>y_pred = 算法.predict(x_test)</li>
-<li>y_test == y_pred ?</li>
+</li>
+</ul>
+<h2 id="例：kNN预测鸢尾花类型"><a href="#例：kNN预测鸢尾花类型" class="headerlink" title="- 例：kNN预测鸢尾花类型"></a>- 例：kNN预测鸢尾花类型</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 1、读取数据</span>
+iris <span class="token operator">=</span> load_iris<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># print(iris)</span>
+<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true"># 2、划分数据集</span>
+x_train<span class="token punctuation">,</span> x_test<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> y_test <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>iris<span class="token punctuation">.</span>data<span class="token punctuation">,</span> iris<span class="token punctuation">.</span>target<span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># print(type(x_train))</span>
+
+<span class="token comment" spellcheck="true"># 3、特征工程：标准化</span>
+trans <span class="token operator">=</span> StandardScaler<span class="token punctuation">(</span><span class="token punctuation">)</span>
+x_train <span class="token operator">=</span> trans<span class="token punctuation">.</span>fit_transform<span class="token punctuation">(</span>x_train<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 对x_train进行标准化</span>
+x_test <span class="token operator">=</span> trans<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 对x_test也进行相同的标准化</span>
+
+<span class="token comment" spellcheck="true"># 4、训练knn模型</span>
+esti <span class="token operator">=</span> KNeighborsClassifier<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 实例化一个预估器</span>
+
+para_grid <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'n_neighbors'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+esti <span class="token operator">=</span> GridSearchCV<span class="token punctuation">(</span>esti<span class="token punctuation">,</span> param_grid<span class="token operator">=</span>para_grid<span class="token punctuation">,</span> cv<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 网格搜索+交叉验证</span>
+
+esti<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 训练</span>
+
+<span class="token comment" spellcheck="true"># 5、评估模型</span>
+    <span class="token comment" spellcheck="true"># 方法1：</span>
+y_pred <span class="token operator">=</span> esti<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 预测</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"y_predict ="</span><span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"accuracy_1 ="</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>sum<span class="token punctuation">(</span>y_pred <span class="token operator">==</span> y_test<span class="token punctuation">)</span><span class="token operator">/</span>sum<span class="token punctuation">(</span>np<span class="token punctuation">.</span>ones<span class="token punctuation">(</span>y_test<span class="token punctuation">.</span>shape<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 计算准确率</span>
+
+    <span class="token comment" spellcheck="true"># 方法2：</span>
+accuracy <span class="token operator">=</span> esti<span class="token punctuation">.</span>score<span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 计算准确率</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"accuracy_2 ="</span><span class="token punctuation">,</span> accuracy<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 最佳参数：best_params_</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"最佳参数：\n"</span><span class="token punctuation">,</span> esti<span class="token punctuation">.</span>best_params_<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 最佳结果：best_score_</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"最佳结果：\n"</span><span class="token punctuation">,</span> esti<span class="token punctuation">.</span>best_score_<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 最佳估计器：best_estimator_</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"最佳估计器:\n"</span><span class="token punctuation">,</span> esti<span class="token punctuation">.</span>best_estimator_<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 交叉验证结果：cv_results_</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"交叉验证结果:\n"</span><span class="token punctuation">,</span> esti<span class="token punctuation">.</span>cv_results_<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em>输出：</em><br><img src="https://s2.loli.net/2025/01/22/PsZR7CIAUbJK3m8.png" alt="image.png"></p>
+<h2 id="案例：Facebook签到位置预测"><a href="#案例：Facebook签到位置预测" class="headerlink" title="- 案例：Facebook签到位置预测"></a>- 案例：Facebook签到位置预测</h2><p><em><strong>具体代码见Python&gt;MachineLearning文件中的==facebook_knn.ipynb==文件</strong></em></p>
+<h2 id="3、朴素贝叶斯算法"><a href="#3、朴素贝叶斯算法" class="headerlink" title="3、朴素贝叶斯算法"></a>3、朴素贝叶斯算法</h2><ul>
+<li>分类结果是概率值，需要数据量大</li>
+<li>原理：<strong>朴素+贝叶斯</strong><ul>
+<li>贝叶斯：联合概率、条件概率、相互独立的概念定义，<strong>贝叶斯公式</strong></li>
+<li><strong>朴素：假设特征之间相互独立</strong></li>
+<li><strong>拉普拉斯平滑系数</strong>：<ul>
+<li>防止计算出的分类概率为0</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2025/01/24/jsDlYi2fF6APIzr.png" alt="image.png"><br><em>α系数一般为1，m为训练文档中统计出的<strong>特征词数</strong>（所有有意义的特征词、不重复），N为所有C条件下所有词的个数，Ni为所有C条件下F1词的个数</em></p>
+<ul>
+<li>应用场景：<strong>文本分类</strong>（情感分析等）</li>
+</ul>
+<p><strong>API：</strong></p>
+<ul>
+<li>sklearn.naive_bayes.MultinormialNB(alpha=1.0)<ul>
+<li><p>alpha=：拉普拉斯平滑系数（默认=1.0）</p>
+</li>
+<li><p>MultinormialNB.fit(x_train , y_train)：训练</p>
+</li>
+<li><p>MultinormialNB.predict(x_test)：预测</p>
+</li>
+<li><p>MultinormialNB.score(x_test, y_test)：评估</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>代码示例：</p>
+<pre class="line-numbers language-python"><code class="language-python">news <span class="token operator">=</span> fetch_20newsgroups<span class="token punctuation">(</span>subset<span class="token operator">=</span><span class="token string">"all"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 获取数据集</span>
+x_train<span class="token punctuation">,</span> x_test<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> y_test <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>news<span class="token punctuation">.</span>data<span class="token punctuation">,</span> news<span class="token punctuation">.</span>target<span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 划分数据集</span>
+
+<span class="token comment" spellcheck="true"># 特征工程：文本特征抽取（Tf-idf）</span>
+trans <span class="token operator">=</span> TfidfVectorizer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+x_train <span class="token operator">=</span> trans<span class="token punctuation">.</span>fit_transform<span class="token punctuation">(</span>x_train<span class="token punctuation">)</span>
+x_test <span class="token operator">=</span> trans<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"type of x_test:"</span><span class="token punctuation">,</span> type<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 朴素贝叶斯算法</span>
+esti <span class="token operator">=</span> MultinomialNB<span class="token punctuation">(</span><span class="token punctuation">)</span>
+esti<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 模型评估</span>
+    <span class="token comment" spellcheck="true"># 方法1：</span>
+y_pred <span class="token operator">=</span> esti<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 预测</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"y_predict ="</span><span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span>
+accuracy_1 <span class="token operator">=</span> np<span class="token punctuation">.</span>sum<span class="token punctuation">(</span>y_pred <span class="token operator">==</span> y_test<span class="token punctuation">)</span><span class="token operator">/</span>sum<span class="token punctuation">(</span>np<span class="token punctuation">.</span>ones<span class="token punctuation">(</span>y_test<span class="token punctuation">.</span>shape<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"accuracy_1 ="</span><span class="token punctuation">,</span> accuracy_1<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 计算准确率</span>
+
+    <span class="token comment" spellcheck="true"># 方法2：</span>
+accuracy_2 <span class="token operator">=</span> esti<span class="token punctuation">.</span>score<span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 计算准确率</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"accuracy_2 ="</span><span class="token punctuation">,</span> accuracy_2<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em>输出：</em><br><img src="https://s2.loli.net/2025/01/24/fnJrHyuGwKaPoxI.png" alt="image.png"></p>
+<ul>
+<li><strong>优点</strong>：<ul>
+<li>稳定的分类效率</li>
+<li>对缺失值不太敏感，算法简单</li>
+<li>速度快</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：<ul>
+<li>由于假设特征之间相互独立，所以当特征关联性强的时候效果差</li>
+</ul>
+</li>
+</ul>
+<h2 id="4、决策树"><a href="#4、决策树" class="headerlink" title="4、决策树"></a>4、决策树</h2><ul>
+<li><p>按照类似if…else…的结构分割数据，按顺序高效决策</p>
+</li>
+<li><p>需要决定按照特征的先后顺序</p>
+</li>
+<li><p>信息论基础：</p>
+<ul>
+<li>信息熵</li>
+<li>信息增益：g(D , A) = 总信息熵 H(D) - 条件熵 H(D|A)<br><img src="https://s2.loli.net/2025/01/29/zji1luESoqfUayW.png" alt="image.png"></li>
+</ul>
+</li>
+<li><p>根据<strong>不确定度减少最多</strong>的特征排序判断，也就是<strong>信息增益最大</strong>排序的特征判断</p>
+</li>
+</ul>
+<p><strong>API：</strong></p>
+<ul>
+<li><p>sklearn.tree.DecisionTreeClassifier(criterion= , max_depth= , random_state= )</p>
+<ul>
+<li>决策树分类器</li>
+<li>参数：<ul>
+<li>criterion=：决策树划分依据，默认’gini’，可以选信息增益’entropy’</li>
+<li>max_depth=：树的深度大小，默认None（拟合所有特征，可能会过拟合）</li>
+<li>random_state=：随机数种子</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>决策树的<strong>可视化</strong>：</p>
+<ul>
+<li><p>sklearn.tree.export_graphviz(estimator , out_file=’xxx.dot’ , feature_names=[‘ ‘ , ‘ ‘])</p>
+<ul>
+<li>estimator：需要导出的训练好的预估器</li>
+<li>out_file=：导出文件的名字，格式为.dot</li>
+<li>feature_names=：导出的特征名字</li>
+</ul>
+</li>
+<li><p>可以在网站<strong>webgraphviz</strong>中打开.dot文件查看树的形状，也可以在vscode中安装<strong>插件Graphviz Interactive Preview</strong>预览</p>
+</li>
+</ul>
+</li>
+<li><p><strong>优点</strong>：可视化，可解释能力强</p>
+</li>
+<li><p><strong>缺点</strong>：过于深的树容易过拟合</p>
+</li>
+<li><p><strong>改进</strong>：减枝cart算法，随机森林</p>
+</li>
+<li><p>应用范围：企业决策</p>
+</li>
+</ul>
+<h2 id="案例：泰坦尼克号乘客生存预测"><a href="#案例：泰坦尼克号乘客生存预测" class="headerlink" title="- 案例：泰坦尼克号乘客生存预测"></a>- 案例：泰坦尼克号乘客生存预测</h2><p><em><strong>具体代码见Python&gt;MachineLearning文件中的==titanic.ipynb==文件</strong></em></p>
+<h2 id="5、随机森林"><a href="#5、随机森林" class="headerlink" title="5、随机森林"></a>5、随机森林</h2><ul>
+<li>防止决策树出现过拟合</li>
+<li>集成学习方法：建立几个模型组合解决单一预测问题，最后预测的结果取几个模型预测结果的众数</li>
+<li>随机森林：包含<strong>多个决策树</strong>的分类器，结果由多个决策树结果的<strong>众数</strong>决定</li>
+<li>两个随机：（保持每个决策树的独立）<ol>
+<li><strong>训练集随机</strong><ul>
+<li><strong>BootStrap抽样</strong>：在N个样本中随机有放回抽样抽N个，组成新训练集，抽到的新训练集可能有重复样本</li>
+</ul>
+</li>
+<li><strong>特征随机</strong><ul>
+<li>在M个特征中随机有放回抽样抽m个，组成新特征集，抽到的新特征集可能有重复特征（<strong>M&gt;&gt;m</strong>）</li>
+<li><strong>优点</strong>：降维，运算速度快，防止过拟合，但不损失正确率</li>
+</ul>
+</li>
 </ol>
 </li>
-<li>直接计算准确率：<ul>
-<li>accuracy = 算法.score(x_test, y_test)</li>
+</ul>
+<p><strong>API：</strong></p>
+<ul>
+<li><p>sklearn.ensemble.RandomForestClassifier(参数)：</p>
+<ul>
+<li><strong>参数</strong>：<ul>
+<li>n_estimators：树木数量，默认为10</li>
+<li>criterion=：决策树划分依据，默认’gini’</li>
+<li>max_depth=：树的深度大小，默认None</li>
+<li>bootstrap=：是否随机有放回抽样，默认True</li>
+<li>max_features=：每个决策树的最大特征数量<ul>
+<li>‘auto’ 或 ‘sqrt’：m=sqrt(M)</li>
+<li>‘log2’：m=log2(M)</li>
+<li>None：m=M（一般不用）</li>
+</ul>
+</li>
+<li>random_state=：随机数种子</li>
+<li>…</li>
 </ul>
 </li>
 </ul>
 </li>
-</ol>
+<li><p><strong>优点</strong>：</p>
+<ul>
+<li>具有极好的准确率</li>
+<li>适用于大数据场景，能处理高维特征的输入样本</li>
+<li>能评估每个特征在分类问题上的重要性</li>
+</ul>
 </li>
 </ul>
 
@@ -600,7 +817,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://nefelibatabigr.github.io/2025/02/06/ji-qi-xue-xi-4-bu-chong-shu-ju-chu-li/">https://nefelibatabigr.github.io/2025/02/06/ji-qi-xue-xi-4-bu-chong-shu-ju-chu-li/</a>
+                    <a href="https://nefelibatabigr.github.io/2025/02/07/ji-qi-xue-xi-5-fen-lei-suan-fa/">https://nefelibatabigr.github.io/2025/02/07/ji-qi-xue-xi-5-fen-lei-suan-fa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -813,9 +1030,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2025/02/07/ji-qi-xue-xi-5-fen-lei-suan-fa/">
                     <div class="card-image">
@@ -832,9 +1050,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-02-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -847,6 +1065,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -869,30 +1088,34 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2025/02/05/sheng-xin-2-r-yu-ji-yin-chai-yi-biao-da-go-fu-ji/">
+                <a href="/2025/02/06/ji-qi-xue-xi-4-bu-chong-shu-ju-chu-li/">
                     <div class="card-image">
                         
-                        <img src="/medias/cover/R.jpg" class="responsive-img" alt="生信2：R 与 基因差异表达、GO富集">
+                        <img src="/medias/cover/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86.jpg" class="responsive-img" alt="机器学习4——补充：数据预处理、转换器和预估器">
                         
-                        <span class="card-title">生信2：R 与 基因差异表达、GO富集</span>
+                        <span class="card-title">机器学习4——补充：数据预处理、转换器和预估器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            生物信息学2：R语言、基因差异表达、GO富集，学习内容为生物信息学导论课程内容。
+                            机器学习笔记4：补充部分，学习内容为数据预处理b站视频与黑马程序员的b站视频。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/bioinfo1/" class="post-category">
-                                    生物信息学
+                            <a href="/categories/ml1/" class="post-category">
+                                    机器学习
+                                </a>
+                            
+                            <a href="/categories/ml1/shuju1/" class="post-category">
+                                    数据处理
                                 </a>
                             
                             
@@ -902,12 +1125,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/R/">
-                        <span class="chip bg-color">R</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
                     </a>
                     
-                    <a href="/tags/gene2/">
-                        <span class="chip bg-color">基因</span>
+                    <a href="/tags/ml2/">
+                        <span class="chip bg-color">机器学习</span>
                     </a>
                     
                 </div>
