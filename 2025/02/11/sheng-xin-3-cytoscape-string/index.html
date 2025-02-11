@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="机器学习4——补充：数据预处理、转换器和预估器……, NeBIGR&#39;s Blog">
+    <meta name="keywords" content="生信3：Cytoscape + STRING, NeBIGR&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>机器学习4——补充：数据预处理、转换器和预估器…… | NeBIGR&#39;s Blog</title>
+    <title>生信3：Cytoscape + STRING | NeBIGR&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -291,12 +291,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/%E4%BA%92%E4%BD%9C.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">机器学习4——补充：数据预处理、转换器和预估器……</h1>
+                    <h1 class="description center-align post-title">生信3：Cytoscape + STRING</h1>
                 </div>
             </div>
         </div>
@@ -412,12 +412,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/python/">
-                                <span class="chip bg-color">python</span>
-                            </a>
-                        
-                            <a href="/tags/ml2/">
-                                <span class="chip bg-color">机器学习</span>
+                            <a href="/tags/interact2/">
+                                <span class="chip bg-color">相互作用</span>
                             </a>
                         
                     </div>
@@ -428,12 +424,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/ml1/" class="post-category">
-                                机器学习
-                            </a>
-                        
-                            <a href="/categories/ml1/shuju1/" class="post-category">
-                                数据处理
+                            <a href="/categories/bioinfo1/" class="post-category">
+                                生物信息学
                             </a>
                         
                     </div>
@@ -445,21 +437,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2025-02-06
+                    2025-02-11
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-02-08
+                    2025-02-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    991
+                    913
                 </div>
                 
 
@@ -486,99 +478,55 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>机器学习是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。</strong></p>
-<hr>
+                <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><h2 id="1、Cytoscape"><a href="#1、Cytoscape" class="headerlink" title="1、Cytoscape"></a>1、Cytoscape</h2><ul>
+<li>Cytoscape 是一个专注于开源网络可视化和分析的软件。它的核心是提供基础的功能布局和查询网络，并依据基本的数据的结合成可视化网络。</li>
+<li>Cytoscape 源自系统生物学，用于将生物分子交互网络与高通量基因表达数据和其他的分子状态信息整合在一起，其最强大的功能还是用于大规模蛋白质-蛋白质相互作用、蛋白质-DNA和遗传交互作用的分析。</li>
+</ul>
+<h2 id="2、STRING"><a href="#2、STRING" class="headerlink" title="2、STRING"></a>2、STRING</h2><ul>
+<li>STRING数据库是一个预测蛋白质间相互作用的综合数据库。它不仅包含了实验验证的直接物理性蛋白质-蛋白质相互作用，还包括了通过基因邻接、基因融合事件、基因共表达、文本挖掘等方法推断出的功能关联。</li>
+<li>蛋白质互作网络（PPI网络），在STRING数据库中，是通过将不同的蛋白质作为节点，它们之间的相互作用作为边来构建的一种网络模型。这种网络可以帮助研究人员理解细胞内的复杂过程，如信号传导路径、代谢途径和疾病机制等。</li>
+</ul>
+<h1 id="二、使用STRING数据库生成一张PPI网络图"><a href="#二、使用STRING数据库生成一张PPI网络图" class="headerlink" title="二、使用STRING数据库生成一张PPI网络图"></a>二、使用STRING数据库生成一张PPI网络图</h1><ul>
+<li><p>打开STRING在线网站：<a target="_blank" rel="noopener" href="https://cn.string-db.org/">https://cn.string-db.org/</a><br><img src="https://s2.loli.net/2025/02/11/d71vBzcoG38pnYQ.png" alt="image.png"></p>
+</li>
+<li><p>按照蛋白质名称，氨基酸序列等信息进行检索某个特定的蛋白质相互作用的其他蛋白质<br><img src="https://s2.loli.net/2025/02/11/bDl5gzt2NWOwcpH.png" alt="image.png"><br><em>这里选BRCA1（乳腺癌易感蛋白1）</em></p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2025/02/11/68wUdTyjIAZlC21.png" alt="image.png"><br><em>选第一个，人类，点击continue</em></p>
 <ul>
-<li>深度学习 ⊆ <strong>机器学习</strong> ⊆ 人工智能<ul>
-<li>机器学习是人工智能的一个实现途径</li>
-<li>深度学习是由机器学习发展而来</li>
+<li>展示与人类BRCA1互作的蛋白网络<br><img src="https://s2.loli.net/2025/02/11/XT6ZzyYKRoAb8rf.png" alt="image.png"><br><em>圆圈代表蛋白质，点击圆圈可以查看蛋白质相关信息；拖动圆圈可以移动位置；<br>直线代表蛋白质之间相互作用，点击可以查看互作信息</em></li>
 </ul>
+<p><img src="https://s2.loli.net/2025/02/11/O2SMpz5WiCgu46w.png" alt="image.png"><br><em>Known Interactions：即来自数据库或者实验中的数据；<br>Predicted Interactions：即基因邻接，基因融合，基因共现；<br>Others：即文本挖掘，共表达，蛋白同源性</em></p>
+<ul>
+<li><p>用Settings调整网络图：<br><img src="https://s2.loli.net/2025/02/11/UlNbzdjZBk8yLYW.png" alt="image.png"><br><em>Network type: 网络类型，默认只选择“full STRING network”；<br>meaning of network edges：网络线型，两个选项分别表示两个蛋白质之间交互的类型或者两个相连蛋白质之间连接的数据强度；<br>evidence：不同颜色的线表示不同证据；<br>confidence：两个蛋白质相互作用越强连线越粗；<br>active interaction sources：网络图交互数据来源；<br>minimum required interaction score:最低要求的交互置信度，数值越大，节点越少</em></p>
 </li>
-<li>应用领域：传统预测、图像识别、自然语言处理</li>
-<li>理论书：《机器学习》“西瓜书”、《统计学习方法》</li>
-<li>库：<strong>sklearn</strong></li>
-<li>==<strong>模型选择</strong>==：<br><img src="https://s2.loli.net/2025/02/01/kAj2tX7rLOn5FMq.png" alt="image.png"></li>
-</ul>
-<h1 id="三、补充：数据预处理"><a href="#三、补充：数据预处理" class="headerlink" title="三、补充：数据预处理"></a>三、补充：数据预处理</h1><ul>
-<li>数据分为：<ul>
-<li>连续型数据：一个区间内可以取任意值（如：身高、体重等）</li>
-<li>非连续型数据：只能取某些特定的值（如：性别、民族、血型等）</li>
-</ul>
+<li><p>调整网络图：<br><img src="https://s2.loli.net/2025/02/11/1f9RFHNPA2u63Mr.png" alt="image.png"><br><img src="https://s2.loli.net/2025/02/11/ah4pIFmMK6YdkZB.png" alt="image.png"><br><img src="https://s2.loli.net/2025/02/11/9whRVyuGoPX3Bt8.png" alt="image.png"></p>
+</li>
+<li><p>用Analysis进行简单的分析：<br><img src="https://s2.loli.net/2025/02/11/ZVErAIiNv5WPTw9.png" alt="image.png"><br><em>进行一些简单的网络分析，得到蛋白参与的功能描述；<br>这些分析结果，在本页下方提供了下载，方便其他应用直接使用</em></p>
+</li>
+<li><p>用Clusters进行聚类：<br><img src="https://s2.loli.net/2025/02/11/Tqogr6jt4VZ9mAc.png" alt="image.png"><br><em>一般是默认为不聚类的，如果需要对图中的节点进行聚类分析，可以点击kmeans clustering进行聚类；<br>每一种颜色代表一个聚类；<br>下方出现聚类的标志和个数，以及对应的蛋白名称等</em></p>
 </li>
 </ul>
-<h2 id="1、去除唯一属性"><a href="#1、去除唯一属性" class="headerlink" title="1、去除唯一属性"></a>1、去除唯一属性</h2><ul>
-<li>通常是一些id属性，不能表示数据本身的分布规律</li>
-</ul>
-<h2 id="2、处理缺失值"><a href="#2、处理缺失值" class="headerlink" title="2、处理缺失值"></a>2、处理缺失值</h2><h3 id="（1）方法"><a href="#（1）方法" class="headerlink" title="（1）方法"></a>（1）方法</h3><ul>
-<li>直接使用含有缺失值的特征（适用于某个数据比较偏离原始的所有数据）</li>
-<li>删除含有缺失值的特征（适用于某个特征含有大量缺失值、少量有效值，或含有的缺失值的数据数量相较于总体数据很少，删除影响不大）</li>
-<li>缺失值插补：均值插补、同类均值插补、建模预测、高维映射、多重插补、手动插补、极大似然估计、压缩感知、矩阵补全</li>
-</ul>
-<h3 id="（2）缺失值插补方法"><a href="#（2）缺失值插补方法" class="headerlink" title="（2）缺失值插补方法"></a>（2）缺失值插补方法</h3><ul>
-<li>均值插补：数据可度量-&gt;平均值，不可度量-&gt;众数</li>
-<li>同类均值插补：先分类再用平均值插补</li>
-<li>建模预测：将缺失值作为预测目标，利用现有的机器学习算法<ul>
-<li><strong>缺点</strong>：如果其他属性与缺失值无关，则预测无效；如果相关，则没必要考虑缺失值；一般介于两者之间</li>
+<p><img src="https://s2.loli.net/2025/02/11/RYr62k8zFOjCbq7.png" alt="image.png"><br><img src="https://s2.loli.net/2025/02/11/yD25GlHzB9xp3oA.png" alt="image.png"></p>
+<h1 id="三、Cytoscape与STRING联用"><a href="#三、Cytoscape与STRING联用" class="headerlink" title="三、Cytoscape与STRING联用"></a>三、Cytoscape与STRING联用</h1><ul>
+<li><p>Cytoscape界面（自行安装）：<br><img src="https://s2.loli.net/2025/02/11/AKur8iCxnsOyMJW.png" alt="image.png"></p>
+</li>
+<li><p>在Cytoscape中安装STRING软件库：<br><img src="https://s2.loli.net/2025/02/11/kTv5ScQxKbJVtWC.png" alt="image.png"></p>
+</li>
+<li><p>利用STRING导入蛋白互作网络：</p>
+<ul>
+<li>File-&gt;import -&gt; network -&gt; public databases  </li>
+<li>选择string数据库，以基因或蛋白输入<br><img src="https://s2.loli.net/2025/02/11/BAzGRHZo7e328Sy.png" alt="image.png"><br><img src="https://s2.loli.net/2025/02/11/FQkWbU1AwSHKxyo.png" alt="image.png"><br><em>输入BRCA1，score=0.20，连接的基因最大为80个</em></li>
 </ul>
 </li>
-<li>高维映射：用独热编码（one-hot编码）把属性映射到高维空间<ul>
-<li><strong>优点</strong>：最精确</li>
-<li><strong>缺点</strong>：计算量大，所需样本量大</li>
+<li><p>展示蛋白互作网络：<br><img src="https://s2.loli.net/2025/02/11/eUPfucg65JACF2z.png" alt="image.png"><br>改为score=0.40，连接的基因最大为20个：<br><img src="https://s2.loli.net/2025/02/11/vgGz6q198XIpjd2.png" alt="image.png"></p>
+</li>
+<li><p>美化STRING网站上保存的网络图：</p>
+<ul>
+<li>保存网络图：<br><img src="https://s2.loli.net/2025/02/11/8cplxGSoPqbnLWO.png" alt="image.png"></li>
 </ul>
 </li>
-<li>多重插补：将缺失值视为一个计算后的值加一个随机噪声，不同噪声得到多个插补值，根据实际情况选择合适的插补值</li>
-<li>手动插补：主观估计插补值，需要符合现实规律<ul>
-<li><strong>优点</strong>：效果比较好</li>
-</ul>
-</li>
-</ul>
-<h2 id="3、数据标准化"><a href="#3、数据标准化" class="headerlink" title="3、数据标准化"></a>3、数据标准化</h2><ul>
-<li>将某个属性缩放到特定范围</li>
-<li>原因：某些算法要求数据零均值、单位方差；<strong>消除不同属性不同量级的影响</strong></li>
-<li>方法：<ul>
-<li>min-max标准化（<strong>归一化</strong>）：将所有值映射到（0,1）上均匀分布，上下界映射为0、1</li>
-<li>z-score标准化（<strong>规范化</strong>）：（原数据-均值）÷标准差，进行正态分布标准化</li>
-</ul>
-</li>
-</ul>
-<h1 id="四、sklearn转换器和预估器"><a href="#四、sklearn转换器和预估器" class="headerlink" title="四、sklearn转换器和预估器"></a>四、sklearn转换器和预估器</h1><ul>
-<li>转换器（transformer）、预估器（estimator）</li>
-<li><strong>转换器</strong>用于特征工程、特征处理，<strong>预估器</strong>用于调用模型、模型训练，注意区分！！！</li>
-</ul>
-<h2 id="1、转换器"><a href="#1、转换器" class="headerlink" title="1、转换器"></a>1、转换器</h2><ul>
-<li><strong>特征工程处理</strong>第一步都要<strong>实例化</strong>一个转换器类，转换器可以看作特征工程方法的父类</li>
-<li>fit_transform()：<ul>
-<li>fit()：输入数据不处理，只计算每一列的均值和标准差</li>
-<li>transform()：数据转换，利用fit()得到的均值和标准差计算</li>
-</ul>
-</li>
-</ul>
-<h2 id="2、预估器"><a href="#2、预估器" class="headerlink" title="2、预估器"></a>2、预估器</h2><ul>
-<li>sklearn<strong>机器学习算法</strong>的实现，可以看作算法的父类</li>
-<li>分类、回归、无监督学习的所有算法都是estimator的子类</li>
-<li>步骤：<ol>
-<li><strong>实例化</strong>一个预估器（算法）</li>
-<li>训练，生成模型：调用 算法.fit(x_train , y_train)</li>
-<li>模型评估：<ul>
-<li>直接比对预测值与真实值：<ol>
-<li>y_pred = 算法.predict(x_test)</li>
-<li>y_test == y_pred ?</li>
-</ol>
-</li>
-<li>直接计算准确率：<ul>
-<li>accuracy = 算法.score(x_test, y_test)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h1 id="七、模型保存与加载"><a href="#七、模型保存与加载" class="headerlink" title="七、模型保存与加载"></a>七、模型保存与加载</h1><ul>
-<li>导入库：import joblib<ul>
-<li>joblib.dump(estimator , ‘xxx.pkl’)：保存模型</li>
-<li>esti = joblib.load(‘xxx.pkl’)：加载模型</li>
-</ul>
+<li><p>载入网络图到Cytoscape：<br><img src="https://s2.loli.net/2025/02/11/vFHSTquVb4Ut9Q7.png" alt="image.png"><br><img src="https://s2.loli.net/2025/02/11/LkKcxMdV2DPHgmX.png" alt="image.png"><br>进行进一步美化<br>展示效果图：<br><img src="https://s2.loli.net/2025/02/11/pEiHbTWadfR7Zhu.png" alt="image.png"></p>
 </li>
 </ul>
 
@@ -607,7 +555,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://nefelibatabigr.github.io/2025/02/06/ji-qi-xue-xi-4-bu-chong-shu-ju-chu-li/">https://nefelibatabigr.github.io/2025/02/06/ji-qi-xue-xi-4-bu-chong-shu-ju-chu-li/</a>
+                    <a href="https://nefelibatabigr.github.io/2025/02/11/sheng-xin-3-cytoscape-string/">https://nefelibatabigr.github.io/2025/02/11/sheng-xin-3-cytoscape-string/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -645,12 +593,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/python/">
-                                    <span class="chip bg-color">python</span>
-                                </a>
-                            
-                                <a href="/tags/ml2/">
-                                    <span class="chip bg-color">机器学习</span>
+                                <a href="/tags/interact2/">
+                                    <span class="chip bg-color">相互作用</span>
                                 </a>
                             
                         </div>
@@ -820,28 +764,78 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2025/02/07/ji-qi-xue-xi-5-fen-lei-suan-fa/">
+                <a href="/2025/02/11/sheng-xin-3-cytoscape-string/">
                     <div class="card-image">
                         
-                        <img src="/medias/cover/%E5%88%86%E7%B1%BB.jpg" class="responsive-img" alt="机器学习5——分类算法">
+                        <img src="/medias/cover/%E4%BA%92%E4%BD%9C.jpg" class="responsive-img" alt="生信3：Cytoscape + STRING">
                         
-                        <span class="card-title">机器学习5——分类算法</span>
+                        <span class="card-title">生信3：Cytoscape + STRING</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            机器学习笔记5：分类算法部分，学习内容为黑马程序员的b站视频。
+                            生物信息学3：Cytoscape与STRING，学习内容为生物信息学导论课程内容。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-02-07
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/bioinfo1/" class="post-category">
+                                    生物信息学
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/interact2/">
+                        <span class="chip bg-color">相互作用</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/02/08/ji-qi-xue-xi-6-hui-gui-yu-ju-lei/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/cover/%E5%9B%9E%E5%BD%92.jpg" class="responsive-img" alt="机器学习6——回归与聚类">
+                        
+                        <span class="card-title">机器学习6——回归与聚类</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            机器学习笔记6：回归与聚类算法部分，学习内容为黑马程序员的b站视频。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -863,58 +857,6 @@
                     
                     <a href="/tags/ml2/">
                         <span class="chip bg-color">机器学习</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2025/02/05/sheng-xin-2-r-yu-ji-yin-chai-yi-biao-da-go-fu-ji/">
-                    <div class="card-image">
-                        
-                        <img src="/medias/cover/R.jpg" class="responsive-img" alt="生信2：R 与 基因差异表达、GO富集">
-                        
-                        <span class="card-title">生信2：R 与 基因差异表达、GO富集</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            生物信息学2：R语言、基因差异表达、GO富集，学习内容为生物信息学导论课程内容。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-05
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/bioinfo1/" class="post-category">
-                                    生物信息学
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/R/">
-                        <span class="chip bg-color">R</span>
-                    </a>
-                    
-                    <a href="/tags/gene2/">
-                        <span class="chip bg-color">基因</span>
                     </a>
                     
                 </div>
