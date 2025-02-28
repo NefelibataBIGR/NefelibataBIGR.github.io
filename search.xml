@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>机器学习8——Seaborn</title>
+      <link href="/2025/02/28/ji-qi-xue-xi-8-seaborn/"/>
+      <url>/2025/02/28/ji-qi-xue-xi-8-seaborn/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><ul><li><em>访问作者github： <a href="https://github.com/NefelibataBIGR/Machine_Learning_Notes">https://github.com/NefelibataBIGR/Machine_Learning_Notes</a> ，获取笔记<strong>代码</strong></em></li><li><em><strong>具体笔记代码见 Python&gt;seaborn 文件中的 ==seaborn.ipynb== 文件</strong></em></li></ul><h1 id="一、基本介绍"><a href="#一、基本介绍" class="headerlink" title="一、基本介绍"></a>一、基本介绍</h1><ul><li>与Matplotlib类似的画图库，能很好地与pandas交互</li><li>常用于<strong>EDA（探索性数据分析）</strong></li><li><strong>import seaborn as sns</strong><br><img src="https://s2.loli.net/2025/02/17/FD68pEUALJck2Qv.png" alt="image.png"></li></ul><h1 id="二、自带数据库"><a href="#二、自带数据库" class="headerlink" title="二、自带数据库"></a>二、自带数据库</h1><ul><li>查看自带数据库：<ul><li>sns.get_dataset_names()</li></ul></li><li>加载xxx数据库：<ul><li>sns.load_dataset(‘xxx’)</li></ul></li></ul><h1 id="三、查看变量分布"><a href="#三、查看变量分布" class="headerlink" title="三、查看变量分布"></a>三、查看变量分布</h1><ul><li>主要看：<ul><li>数据取值范围，是否有异常值？</li><li>是否近似正态分布？是否有偏移？是否双峰分布？</li><li>如果依据类别划分，各子集上数据分布是否有很大差异？</li></ul></li></ul><h2 id="1-箱线图"><a href="#1-箱线图" class="headerlink" title="1. 箱线图"></a>1. 箱线图</h2><ul><li>查看取值范围，异常值<br><strong>API：</strong></li><li>sns.boxplot(data= , x=”xxx”)<ul><li>参数：<ul><li>data=：数据集</li><li>x=：画的特征列的名称</li></ul></li></ul></li></ul><p><strong>或者：</strong></p><ul><li>sns.catplot(data= , x=”xxx”, kind=’box’)<ul><li>参数：<ul><li>data=：数据集</li><li>x=：画的特征列的名称</li></ul></li></ul></li></ul><p><em>在y轴方向绘制箱线图：x= 改成 y=，不指定x或y则画所有特征列的箱线图</em></p><h2 id="2-直方图"><a href="#2-直方图" class="headerlink" title="2. 直方图"></a>2. 直方图</h2><ul><li>查看分布<br><strong>API：</strong></li><li>sns.displot(data= , x=”xxx” , bins= , hue= , shrink= )<ul><li>参数：<ul><li>data=：数据集</li><li>x=：画的特征列的名称（可以数值特征，可以类别特征）</li><li>bins=：组数（调整组数来获取分布特征）</li><li>hue=：类别特征列的名称，对类别特征进行划分分析</li><li>shrink=：柱子大小比例</li></ul></li></ul></li></ul><p><strong>或者：</strong></p><ul><li>sns.countplot(data= , x=”xxx” , hue= )</li></ul><h2 id="3-KDE曲线"><a href="#3-KDE曲线" class="headerlink" title="3. KDE曲线"></a>3. KDE曲线</h2><ul><li>对数据的直方图分布进行拟合</li><li>可用于比较训练集和测试集分布是否一致<br><strong>API：</strong></li><li>sns.kdeplot(data= , x=”xxx”)<ul><li>参数：<ul><li>参数：</li><li>data=：数据集</li><li>x=：画的特征列的名称</li></ul></li></ul></li></ul><p><strong>或者：</strong></p><ul><li>sns.displot(data= , x=”xxx”, kind=”kde”)<ul><li>参数：<ul><li>data=：数据集</li><li>x=：画的特征列的名称（可以数值特征，可以类别特征）</li><li>hue=：类别特征分析，每一类分别画kde曲线</li></ul></li></ul></li></ul><p><em>可以用 rug=True 来添加 rugplot</em><br><em>叠加到直方图上：sns.displot(…… , kde=True)</em><br><strong>其他进阶绘图见代码文件！</strong></p><h2 id="4-ECDF曲线"><a href="#4-ECDF曲线" class="headerlink" title="4. ECDF曲线"></a>4. ECDF曲线</h2><ul><li>经验累积分布函数（ECDF）</li><li>表示给定数据集中小于或等于给定值的观测值的累积百分比<br><strong>API：</strong></li><li>sns.displot(data= , x=”xxx”, kind=’ecdf’)</li></ul><h1 id="四、数值变量关系分析"><a href="#四、数值变量关系分析" class="headerlink" title="四、数值变量关系分析"></a>四、数值变量关系分析</h1><h2 id="1-散点图"><a href="#1-散点图" class="headerlink" title="1. 散点图"></a>1. 散点图</h2><p><strong>API：</strong></p><ul><li>sns.relplot(data= , x= , y= )<ul><li>参数：<ul><li>data=：数据集</li><li>x=：横轴</li><li>y=：纵轴</li><li>hue=：类别颜色标注（可以=数值型特征）</li><li>style=：改变图形</li><li>markers=：改变标注图形</li></ul></li></ul></li></ul><h2 id="2-折线图"><a href="#2-折线图" class="headerlink" title="2. 折线图"></a>2. 折线图</h2><p><strong>API：</strong></p><ul><li>sns.relplot(data= , x= , y= , kind=”line”)</li></ul><h2 id="3-回归拟合"><a href="#3-回归拟合" class="headerlink" title="3. 回归拟合"></a>3. 回归拟合</h2><ul><li><p>画拟合直线：<br>  <strong>API：</strong></p><ul><li>sns.lmplot(data= , x=”xxx”, y=”yyy”)<br>  <strong>或者：</strong></li><li>sns.regplot(data= , x=”xxx”, y=”yyy”)</li></ul></li><li><p>画残差：</p><ul><li>sns.residplot(data= , x=”xxx”, y=”yyy”)</li></ul></li></ul><h2 id="4-联合分布"><a href="#4-联合分布" class="headerlink" title="4. 联合分布"></a>4. 联合分布</h2><ul><li>sns.displot(data= , x=’xxx’ , y=’yyy’)<ul><li>kde曲线形式：加上参数kind=’kde’</li><li><em>其他参数见代码文件</em></li></ul></li></ul><h2 id="5-联合分布-各自分布"><a href="#5-联合分布-各自分布" class="headerlink" title="5. 联合分布+各自分布"></a>5. 联合分布+各自分布</h2><h3 id="（1）成对变量"><a href="#（1）成对变量" class="headerlink" title="（1）成对变量"></a>（1）成对变量</h3><ul><li>sns.jointplot(data= ,x=”xxx”,y=”yyy”)</li><li>升级版：JointGrid<ul><li>g=sns.JointGrid(data= , x=”xxx”, y=”yyy”)</li><li>g.plot_joint(sns.111plot , ……)</li><li>g.plot_marginals(sns.222plot , ……)<ul><li>111plot：中间联合分布的图像形状</li><li>222plot：边缘各自分布的图像形状</li></ul></li></ul></li></ul><h3 id="（2）所有变量"><a href="#（2）所有变量" class="headerlink" title="（2）所有变量"></a>（2）所有变量</h3><ul><li>sns.pairplot(data= )<ul><li>参数：<ul><li>data=：数据集</li><li>x_vars=[ ]：行展示的特征</li><li>y_vars=[ ]：列展示的特征</li></ul></li></ul></li><li>升级版：PairGrid<ul><li>g=sns.PairGrid(data= , x_vars=[ ], y_vars=[ ]</li><li>g.map_upper(sns.111plot)<ul><li>上三角的图像形状</li></ul></li><li>g.map_diag(sns.222plot , kde=True)<ul><li>对角线的图像形状</li></ul></li><li>g.map_lower(sns.333plot)<ul><li>下三角的图像形状</li></ul></li></ul></li></ul><h2 id="6-相关系数"><a href="#6-相关系数" class="headerlink" title="6. 相关系数"></a>6. 相关系数</h2><ul><li>热力图</li></ul><ol><li>求相关系数：xxx_cor=xxx_df.corr()</li><li>画热力图：sns.heatmap(xxx_cor, cmap=”coolwarm”)<ul><li><em>其他参数见代码文件</em></li></ul></li></ol><h1 id="五、类别变量分析"><a href="#五、类别变量分析" class="headerlink" title="五、类别变量分析"></a>五、类别变量分析</h1><h2 id="1-类别变量分布"><a href="#1-类别变量分布" class="headerlink" title="1. 类别变量分布"></a>1. 类别变量分布</h2><ul><li>sns.catplot(data= , x=”xxx”, kind=”count”)</li></ul><h2 id="2-类别变量与数值变量的关系"><a href="#2-类别变量与数值变量的关系" class="headerlink" title="2. 类别变量与数值变量的关系"></a>2. 类别变量与数值变量的关系</h2><ul><li><p>不同类别中数值变量的均值/中值估计：</p><ul><li>均值：sns.catplot(data= , x=”xxx”, y=”yyy”, kind=”bar”)</li><li>中位数：sns.catplot(data= , x=”xxx”, y=”yyy”, kind=”bar”, estimator=np.median)</li><li>点图：<ul><li>sns.catplot(data= , x=”xxx”, y=”yyy”, kind=”point”)</li></ul></li></ul></li><li><p>不同类别中数值变量的取值范围：</p><ul><li>箱线图：sns.catplot(data= , x=”xxx”, y=”yyy”, kind=”box”)</li><li>更能展示异常值：sns.catplot(data= , x=”xxx”, y=”yyy”, kind=”boxen”)</li></ul></li><li><p>不同类别中数值变量的分布：</p><ul><li>带状图：sns.catplot(data= , x=”xxx”, y=”yyy”, kind=”strip”)<ul><li>设置jitter=0，带状绘制成直线，0~1越大越稀疏</li></ul></li><li>分簇散点图：sns.catplot(data= , x=”xxx”, y=”yyy”, kind=”swarm”)</li><li>小提琴图：sns.catplot(data= , x=”xxx”, y=”yyy”, kind=”violin”)</li></ul></li></ul><h1 id="六、自定义绘图函数"><a href="#六、自定义绘图函数" class="headerlink" title="六、自定义绘图函数"></a>六、自定义绘图函数</h1><h2 id="1-FacetGrid"><a href="#1-FacetGrid" class="headerlink" title="1. FacetGrid"></a>1. FacetGrid</h2><ul><li>依据特征的<strong>不同类别</strong>划分子集，每个子集分析</li><li>g=sns.FacetGrid(data= , row=”rrr”, col=”ccc”)<ul><li>注意rrr与ccc都是类别特征</li></ul></li><li>g.map(sns.111plot , “xxx”)<ul><li>xxx为x轴特征<ul><li>可以数值特征</li><li>可以两个（”xxx” , “yyy”）：画联合分布，xxx为x轴特征，yyy为y轴特征</li></ul></li></ul></li></ul><h2 id="2-PairGrid"><a href="#2-PairGrid" class="headerlink" title="2. PairGrid"></a>2. PairGrid</h2><ul><li>全部数据集上所有<strong>数值变量</strong>成对分析</li><li>g = sns.PairGrid(data= )<ul><li>注意：只对数值型特征绘图，可以设定hue来加入类别</li></ul></li><li>g.map(sns.111plot)<ul><li>对角线：g.map_diag()</li><li>非对角线：g.map_offdiag()</li><li>上三角区域：g.map_upper()</li><li>下三角区域：g.map_lower()</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 机器学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+            <tag> python </tag>
+            
+            <tag> seaborn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>机器学习7——Matplotlib</title>
       <link href="/2025/02/23/ji-qi-xue-xi-7-matplotlib/"/>
       <url>/2025/02/23/ji-qi-xue-xi-7-matplotlib/</url>
@@ -20,9 +49,9 @@
       
         <tags>
             
-            <tag> python </tag>
-            
             <tag> 机器学习 </tag>
+            
+            <tag> python </tag>
             
             <tag> matplotlib </tag>
             
@@ -101,9 +130,9 @@
       
         <tags>
             
-            <tag> python </tag>
-            
             <tag> 机器学习 </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -128,9 +157,9 @@
       
         <tags>
             
-            <tag> python </tag>
-            
             <tag> 机器学习 </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -157,9 +186,9 @@
       
         <tags>
             
-            <tag> python </tag>
-            
             <tag> 机器学习 </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -213,9 +242,9 @@
       
         <tags>
             
-            <tag> python </tag>
-            
             <tag> 机器学习 </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -240,9 +269,9 @@
       
         <tags>
             
-            <tag> python </tag>
-            
             <tag> 机器学习 </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -348,11 +377,11 @@
       
         <tags>
             
-            <tag> pandas </tag>
+            <tag> 机器学习 </tag>
             
             <tag> python </tag>
             
-            <tag> 机器学习 </tag>
+            <tag> pandas </tag>
             
         </tags>
       
