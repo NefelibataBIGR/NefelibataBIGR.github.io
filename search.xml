@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>PyTorch 1：基础、加载数据</title>
+      <link href="/2025/03/19/pytorch1-jie-shao-jia-zai-shu-ju/"/>
+      <url>/2025/03/19/pytorch1-jie-shao-jia-zai-shu-ju/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>访问作者github： <a href="https://github.com/NefelibataBIGR/PyTorch_Notes">https://github.com/NefelibataBIGR/PyTorch_Notes</a> ，获取笔记<strong>代码</strong></em></p><ul><li>学习内容为小土堆b站pytorch课程</li></ul><h1 id="一、课程基础"><a href="#一、课程基础" class="headerlink" title="一、课程基础"></a>一、课程基础</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的==basic_lesson.ipynb==文件</strong></em></p><ul><li>两个有用的python函数：dir( )、help( )<br><img src="https://s2.loli.net/2025/02/22/LrPib4UzH9sX8Va.png" alt="image.png"></li></ul><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torchtorch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><em>输出 True 即表明 cuda 可用</em></p><h1 id="二、加载数据"><a href="#二、加载数据" class="headerlink" title="二、加载数据"></a>二、加载数据</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==load_data.ipynb== 文件</strong></em></p><ul><li>Dataset：数据集（含数据+label）</li><li>Dataloader：加载器（设定每次获取数据的batch_size、shuffle等）</li></ul><h2 id="1-Dataset"><a href="#1-Dataset" class="headerlink" title="1. Dataset"></a>1. Dataset</h2><ul><li>from torch.utils.data import Dataset</li><li>import os</li><li>自己设置一个子类继承Dataset类，要能读取数据</li></ul><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">MyData</span><span class="token punctuation">(</span>Dataset<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token triple-quoted-string string">'''&amp;nbsp; &amp;nbsp; 创建自己的数据集读取类&amp;nbsp; &amp;nbsp; '''</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root_dir<span class="token punctuation">,</span> label_dir<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 定义类里面的全局变量，观察到labels就是文件夹的名称</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> self<span class="token punctuation">.</span>root_dir <span class="token operator">=</span> root_dir <span class="token comment" spellcheck="true"># 根目录，这里是训练集的文件夹路径</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> self<span class="token punctuation">.</span>label_dir <span class="token operator">=</span> label_dir <span class="token comment" spellcheck="true"># 数据集所在文件夹名字，这里是标签名</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> self<span class="token punctuation">.</span>path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root_dir<span class="token punctuation">,</span> self<span class="token punctuation">.</span>label_dir<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 获取图片所在文件，这里文件名就是标签</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> self<span class="token punctuation">.</span>image_path_list <span class="token operator">=</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>self<span class="token punctuation">.</span>path<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 获取所有图片的名字组成列表</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 获取某一个图片，index为索引</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> image_name <span class="token operator">=</span> self<span class="token punctuation">.</span>image_path_list<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> image_item_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>self<span class="token punctuation">.</span>path<span class="token punctuation">,</span> image_name<span class="token punctuation">)</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> image <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>image_item_path<span class="token punctuation">)</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> label <span class="token operator">=</span> self<span class="token punctuation">.</span>label_dir<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">return</span> image<span class="token punctuation">,</span> label<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 返回数据集的长度</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">return</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>image_path_list<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><em>具体调试过程见代码文件</em></p><h2 id="2-DataLoader"><a href="#2-DataLoader" class="headerlink" title="2. DataLoader"></a>2. DataLoader</h2><ul><li>from torch.utils.data import DataLoader</li><li>数据加载器：指定了怎样从Dataset中取数据</li><li>参考官方文档：<a href="https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader">torch.utils.data — PyTorch 2.6 documentation</a></li><li>参数：<ul><li><strong>dataset</strong>：要取数据的数据集</li><li><strong>batch_size</strong>：每次取的数据数量</li><li><strong>shuffle</strong>：顺序是否随机</li><li><strong>num_workers</strong>：多进程，=0为主进程</li><li><strong>drop_last</strong>：无法整除batch_size时是否舍去余项</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> python </tag>
+            
+            <tag> pytorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>机器学习8——Seaborn</title>
       <link href="/2025/02/28/ji-qi-xue-xi-8-seaborn/"/>
       <url>/2025/02/28/ji-qi-xue-xi-8-seaborn/</url>
@@ -20,9 +49,9 @@
       
         <tags>
             
-            <tag> 机器学习 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 机器学习 </tag>
             
             <tag> seaborn </tag>
             
@@ -49,9 +78,9 @@
       
         <tags>
             
-            <tag> 机器学习 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 机器学习 </tag>
             
             <tag> matplotlib </tag>
             
@@ -130,9 +159,9 @@
       
         <tags>
             
-            <tag> 机器学习 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 机器学习 </tag>
             
         </tags>
       
@@ -157,9 +186,9 @@
       
         <tags>
             
-            <tag> 机器学习 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 机器学习 </tag>
             
         </tags>
       
@@ -186,9 +215,9 @@
       
         <tags>
             
-            <tag> 机器学习 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 机器学习 </tag>
             
         </tags>
       
@@ -242,9 +271,9 @@
       
         <tags>
             
-            <tag> 机器学习 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 机器学习 </tag>
             
         </tags>
       
@@ -269,9 +298,9 @@
       
         <tags>
             
-            <tag> 机器学习 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 机器学习 </tag>
             
         </tags>
       
@@ -377,11 +406,11 @@
       
         <tags>
             
-            <tag> 机器学习 </tag>
-            
             <tag> python </tag>
             
             <tag> pandas </tag>
+            
+            <tag> 机器学习 </tag>
             
         </tags>
       
