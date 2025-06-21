@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>PyTorch 2：Tensorboard 和 transforms</title>
+      <link href="/2025/06/21/pytorch2-tensorboard-transforms/"/>
+      <url>/2025/06/21/pytorch2-tensorboard-transforms/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>访问作者github： <a href="https://github.com/NefelibataBIGR/PyTorch_Notes">https://github.com/NefelibataBIGR/PyTorch_Notes</a> ，获取笔记<strong>代码</strong></em></p><ul><li>学习内容为小土堆b站pytorch课程</li></ul><h1 id="三、Tensorboard-的使用"><a href="#三、Tensorboard-的使用" class="headerlink" title="三、Tensorboard 的使用"></a>三、Tensorboard 的使用</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==tensorboard_demo.py== 文件</strong></em></p><ul><li>TensorBoard 是一组用于数据可视化的工具</li><li>也可以当做日志使用</li><li><strong>SummaryWriter类</strong><ul><li>将条目直接写入 log_dir 中的事件文件以供 TensorBoard 使用</li><li><strong>实例化一个writer</strong></li><li><strong>最后记得</strong>：writer.close()</li></ul></li></ul><h2 id="1-add-scalar-的使用"><a href="#1-add-scalar-的使用" class="headerlink" title="1. add_scalar( ) 的使用"></a>1. add_scalar( ) 的使用</h2><ul><li>writer.add_scalar(tag , scalar_value , global_step)<ul><li>添加一个标量数据（scalar&nbsp;data）到summary中，画图</li><li>参数：<ul><li>tag：字符串，绘图的标题</li><li>scalar_value：保存的数值（y轴）</li><li>global_step：int，第几步（x轴）</li></ul></li></ul></li><li>写完logs文件夹后命令行输入：tensorboard –logdir=logs –port=自己设置端口号，能看到保存的图</li></ul><h2 id="2-add-image-的使用"><a href="#2-add-image-的使用" class="headerlink" title="2. add_image( ) 的使用"></a>2. add_image( ) 的使用</h2><ul><li>writer.add_scalar(tag , img_tensor , global_step)<ul><li>添加一个图像数据到summary中</li><li>参数：<ul><li>tag：字符串，图片的标题</li><li>img_tensor：<ul><li>注意类型：torch.Tensor, numpy.ndarray, or string/blobname</li><li>要添加的图像</li></ul></li><li>global_step：int，第几步</li></ul></li></ul></li></ul><h1 id="四、transforms"><a href="#四、transforms" class="headerlink" title="四、transforms"></a>四、transforms</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==transforms_demo.ipynb== 文件</strong></em></p><ul><li>torchvision.transforms<ul><li>提供了常用的一系列图像预处理方法，例如数据的标准化，中心化，旋转，翻转等</li></ul></li></ul><h2 id="1-transforms-的使用"><a href="#1-transforms-的使用" class="headerlink" title="1. transforms 的使用"></a>1. transforms 的使用</h2><ul><li>from torchvision import transforms</li><li>工具：<ul><li>ToTensor：将PIL或ndarray类型转换成tensor类型（张量化）</li><li>Resize：改变输入（PIL类型）的形状成指定形状或等比缩放</li><li>Compose：将几个transforms工具组成工作流</li><li>Normalize：将输入（tensor类型）归一化</li><li>RandomCrop：对输入随机裁剪</li></ul></li><li>先实例化再用</li></ul><h2 id="2-常见的-transforms"><a href="#2-常见的-transforms" class="headerlink" title="2. 常见的 transforms"></a>2. 常见的 transforms</h2><ul><li><p>常见数据类型：</p><ul><li>PIL：Image.open()</li><li>tensor：ToTensor()</li><li>ndarray：cv.imread()</li></ul></li><li><p>ToTensor()</p><ul><li>实例化</li><li>将PIL或ndarray类型转换成tensor类型</li></ul></li><li><p>Normalize()</p><ul><li>实例化，输入均值和标准差的列表（每个channel都要有）</li><li>将输入（tensor类型）归一化</li><li>公式：output[channel] = (input[channel] - mean[channel]) / std[channel]</li></ul></li><li><p>Resize()</p><ul><li>实例化</li><li>改变输入（PIL类型）的形状成指定形状或等比缩放<ul><li>输入一个元组就是指定形状</li><li>输入一个值就是等比缩放</li></ul></li></ul></li><li><p>……</p></li><li><p><strong>关注输入输出类型！！关注参数！！多看官方文档！！</strong></p></li></ul><h2 id="3-与数据集结合"><a href="#3-与数据集结合" class="headerlink" title="3. 与数据集结合"></a>3. 与数据集结合</h2><ul><li>torchvision官方文档很多数据集可供下载：<a href="https://pytorch.org/vision/stable/datasets.html">Datasets — Torchvision 0.21 documentation</a></li><li>获取数据集：<ul><li>torchvision.datasets.数据集名字(…… , download=True)</li></ul></li><li>具体代码见文件</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> python </tag>
+            
+            <tag> pytorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>《文明之旅》1031-1040年</title>
       <link href="/2025/04/30/wen-ming-zhi-lu-1031-1040-nian/"/>
       <url>/2025/04/30/wen-ming-zhi-lu-1031-1040-nian/</url>
