@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="PyTorch 1：基础、加载数据, NeBIGR&#39;s Blog">
+    <meta name="keywords" content="PyTorch 3：神经网络的搭建, NeBIGR&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>PyTorch 1：基础、加载数据 | NeBIGR&#39;s Blog</title>
+    <title>PyTorch 3：神经网络的搭建 | NeBIGR&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -291,12 +291,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/pytorch.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/network.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">PyTorch 1：基础、加载数据</h1>
+                    <h1 class="description center-align post-title">PyTorch 3：神经网络的搭建</h1>
                 </div>
             </div>
         </div>
@@ -445,21 +445,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2025-03-19
+                    2026-04-11
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-03-19
+                    2026-04-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    521
+                    652
                 </div>
                 
 
@@ -487,60 +487,144 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p><em>访问作者github： <a target="_blank" rel="noopener" href="https://github.com/NefelibataBIGR/PyTorch_Notes">https://github.com/NefelibataBIGR/PyTorch_Notes</a> ，获取笔记<strong>代码</strong></em></p>
+<h1 id="五、神经网络的搭建"><a href="#五、神经网络的搭建" class="headerlink" title="五、神经网络的搭建"></a>五、神经网络的搭建</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==nn.ipynb== 文件</strong></em></p>
 <ul>
-<li>学习内容为小土堆b站pytorch课程</li>
-</ul>
-<h1 id="一、课程基础"><a href="#一、课程基础" class="headerlink" title="一、课程基础"></a>一、课程基础</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的==basic_lesson.ipynb==文件</strong></em></p>
-<ul>
-<li>两个有用的python函数：dir( )、help( )<br><img src="https://s2.loli.net/2025/02/22/LrPib4UzH9sX8Va.png" alt="image.png"></li>
-</ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch
-torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><em>输出 True 即表明 cuda 可用</em></p>
-<h1 id="二、加载数据"><a href="#二、加载数据" class="headerlink" title="二、加载数据"></a>二、加载数据</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==load_data.ipynb== 文件</strong></em></p>
-<ul>
-<li>Dataset：数据集（含数据+label）</li>
-<li>Dataloader：加载器（设定每次获取数据的batch_size、shuffle等）</li>
-</ul>
-<h2 id="1-Dataset"><a href="#1-Dataset" class="headerlink" title="1. Dataset"></a>1. Dataset</h2><ul>
-<li>from torch.utils.data import Dataset</li>
-<li>import os</li>
-<li>自己设置一个子类继承Dataset类，要能读取数据</li>
-</ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">MyData</span><span class="token punctuation">(</span>Dataset<span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token triple-quoted-string string">'''
-&amp;nbsp; &amp;nbsp; 创建自己的数据集读取类
-&amp;nbsp; &amp;nbsp; '''</span>
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root_dir<span class="token punctuation">,</span> label_dir<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 定义类里面的全局变量，观察到labels就是文件夹的名称</span>
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> self<span class="token punctuation">.</span>root_dir <span class="token operator">=</span> root_dir <span class="token comment" spellcheck="true"># 根目录，这里是训练集的文件夹路径</span>
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> self<span class="token punctuation">.</span>label_dir <span class="token operator">=</span> label_dir <span class="token comment" spellcheck="true"># 数据集所在文件夹名字，这里是标签名</span>
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> self<span class="token punctuation">.</span>path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root_dir<span class="token punctuation">,</span> self<span class="token punctuation">.</span>label_dir<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 获取图片所在文件，这里文件名就是标签</span>
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> self<span class="token punctuation">.</span>image_path_list <span class="token operator">=</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>self<span class="token punctuation">.</span>path<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 获取所有图片的名字组成列表</span>
-
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 获取某一个图片，index为索引</span>
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> image_name <span class="token operator">=</span> self<span class="token punctuation">.</span>image_path_list<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> image_item_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>self<span class="token punctuation">.</span>path<span class="token punctuation">,</span> image_name<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> image <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>image_item_path<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> label <span class="token operator">=</span> self<span class="token punctuation">.</span>label_dir
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">return</span> image<span class="token punctuation">,</span> label
-
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 返回数据集的长度</span>
-<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> <span class="token keyword">return</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>image_path_list<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><em>具体调试过程见代码文件</em></p>
-<h2 id="2-DataLoader"><a href="#2-DataLoader" class="headerlink" title="2. DataLoader"></a>2. DataLoader</h2><ul>
-<li>from torch.utils.data import DataLoader</li>
-<li>数据加载器：指定了怎样从Dataset中取数据</li>
-<li>参考官方文档：<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader">torch.utils.data — PyTorch 2.6 documentation</a></li>
-<li>参数：<ul>
-<li><strong>dataset</strong>：要取数据的数据集</li>
-<li><strong>batch_size</strong>：每次取的数据数量</li>
-<li><strong>shuffle</strong>：顺序是否随机</li>
-<li><strong>num_workers</strong>：多进程，=0为主进程</li>
-<li><strong>drop_last</strong>：无法整除batch_size时是否舍去余项</li>
+<li><strong>torch.nn</strong><ul>
+<li>参考官方文档：<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/nn.html">torch.nn — PyTorch 2.6 documentation</a></li>
 </ul>
 </li>
+</ul>
+<h2 id="1-nn-Module"><a href="#1-nn-Module" class="headerlink" title="1. nn.Module"></a>1. nn.Module</h2><ul>
+<li><p>骨架</p>
+</li>
+<li><p>torch.nn.Module()</p>
+<ul>
+<li>搭建的神经网络都是继承这个类</li>
+</ul>
+</li>
+<li><p><strong>官方给的例子：</strong></p>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F
+
+<span class="token keyword">class</span> <span class="token class-name">Model</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 继承Module类</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> None<span class="token punctuation">:</span>
+        super<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 调用父类（Module）的初始化函数</span>
+        self<span class="token punctuation">.</span>conv1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 自己写，定义卷积1操作</span>
+        self<span class="token punctuation">.</span>conv2 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 自己写，定义卷积2操作</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 前向传播函数</span>
+        x <span class="token operator">=</span> F<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>self<span class="token punctuation">.</span>conv1<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 先卷积1再经过relu层</span>
+        <span class="token keyword">return</span> F<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>self<span class="token punctuation">.</span>conv2<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 再卷积2最后经过relu层，最后输出</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em>注意理解每一行在干什么</em></p>
+<h2 id="2-卷积层"><a href="#2-卷积层" class="headerlink" title="2. 卷积层"></a>2. 卷积层</h2><ul>
+<li><p>主要：</p>
+<ul>
+<li>nn.Conv1d</li>
+<li><strong>nn.Conv2d</strong></li>
+</ul>
+</li>
+<li><p><strong>nn.Conv2d() / nn.functional.conv2d()</strong></p>
+<ul>
+<li><p>二维卷积（图像）</p>
+</li>
+<li><p>nn.Conv2d 参考官方文档：<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html#torch.nn.Conv2d">Conv2d — PyTorch 2.6 documentation</a></p>
+</li>
+<li><p>nn.functional.conv2d 参考官方文档：<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.functional.conv2d.html#torch.nn.functional.conv2d">torch.nn.functional.conv2d — PyTorch 2.6 documentation</a></p>
+</li>
+<li><p><strong>两者区别看这个</strong>：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wangweiwells/article/details/100531264">【pytorch】torch.nn 与 torch.nn.functional 的区别_为什么我的torch没有torch.nn.functional呢-CSDN博客</a></p>
+</li>
+<li><p>参数（以nn.functional.conv2d为例）：</p>
+<ul>
+<li><strong>input</strong>：输入<ul>
+<li>注意形状：&nbsp;(batch , in_channels , iH , iW)</li>
+</ul>
+</li>
+<li><strong>weight</strong>：卷积核<ul>
+<li>注意形状：&nbsp;(out_channels , in_channels , kH , kW)</li>
+</ul>
+</li>
+<li><strong>stride</strong>：步长，默认=1</li>
+<li><strong>padding</strong>：边界0填充，默认=0</li>
+<li>……（<strong>具体看官方文档！</strong>）</li>
+</ul>
+</li>
+<li><p>nn.Conv2d参数（<strong>具体看官方文档！</strong>）：<br>  <img src="https://s2.loli.net/2025/02/24/iqNKjZFBStuwGgb.png" alt="image.png"></p>
+</li>
+<li><p><strong>输出长宽计算</strong>（参数根据这个来取值）：<br>  <img src="https://s2.loli.net/2025/02/24/rYIwlbA6y3jfEWD.png" alt="image.png"></p>
+</li>
+</ul>
+</li>
+<li><p><strong>具体代码见代码文件</strong></p>
+</li>
+</ul>
+<h2 id="3-池化层"><a href="#3-池化层" class="headerlink" title="3. 池化层"></a>3. 池化层</h2><ul>
+<li><p>以最大池化为例（最常用）</p>
+<ul>
+<li>参考官方文档 <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.MaxPool2d.html#torch.nn.MaxPool2d">MaxPool2d — PyTorch 2.6 documentation</a></li>
+</ul>
+</li>
+<li><p><strong>nn.MaxPool2d()</strong></p>
+<ul>
+<li><p>注意输入tensor的形状要求</p>
+</li>
+<li><p>参数：</p>
+<ul>
+<li><strong>kernel_size</strong>：池化核的大小</li>
+<li><strong>stride</strong>：步长，默认为池化核的大小</li>
+<li><strong>padding</strong>：边界0填充，默认=0</li>
+<li><strong>ceil_mode</strong>：默认=False，=True向上取整，即不足池化核大小也保留边界余量取最大池化</li>
+</ul>
+</li>
+<li><p><strong>输出长宽计算</strong>（参数根据这个来取值）：<br>  <img src="https://s2.loli.net/2025/02/25/jqVt4g1TJAPxGaK.png" alt="image.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-非线性激活层"><a href="#4-非线性激活层" class="headerlink" title="4. 非线性激活层"></a>4. 非线性激活层</h2><ul>
+<li>主要有：<ul>
+<li>nn.ReLU()</li>
+<li>nn.Sigmoid()</li>
+</ul>
+</li>
+<li>参考官方文档：<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/nn.html#non-linear-activations-weighted-sum-nonlinearity">torch.nn — PyTorch 2.6 documentation</a></li>
+<li>具体代码见代码文件</li>
+</ul>
+<h2 id="5-线性层-与-其他层、模型"><a href="#5-线性层-与-其他层、模型" class="headerlink" title="5. 线性层 与 其他层、模型"></a>5. 线性层 与 其他层、模型</h2><ul>
+<li><p>其他层：</p>
+<ul>
+<li>归一化层（Normalization Layers）</li>
+<li>RNN相关层（Recurrent Layers）</li>
+<li>Transformer层（Transformer Layers）</li>
+<li>Dropout层（Dropout Layers）</li>
+</ul>
+</li>
+<li><p><strong>都可以在官方文档里面找到</strong></p>
+</li>
+<li><p>模型：</p>
+<ul>
+<li>torchvision.models里面很多现成的模型（图像视觉方面）</li>
+</ul>
+</li>
+<li><p>线性层 / 全连接层（Linear Layers）</p>
+<ul>
+<li><strong>nn.Linear()</strong><ul>
+<li>参数：<ul>
+<li><strong>in_features</strong>：输入特征数</li>
+<li><strong>out_features</strong>：输出特征数（即神经元个数）</li>
+<li><strong>bias</strong>：是否有设置偏置项，默认=True设置</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-nn-Sequential"><a href="#6-nn-Sequential" class="headerlink" title="6. ==nn.Sequential=="></a>6. ==nn.Sequential==</h2><ul>
+<li>类似pipline，模型的工作流</li>
+<li>可以<strong>减轻工作量</strong></li>
 </ul>
 
                 
@@ -568,7 +652,7 @@ torch<span class="token punctuation">.</span>cuda<span class="token punctuation"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://nefelibatabigr.github.io/2025/03/19/pytorch1-jie-shao-jia-zai-shu-ju/">https://nefelibatabigr.github.io/2025/03/19/pytorch1-jie-shao-jia-zai-shu-ju/</a>
+                    <a href="https://nefelibatabigr.github.io/2026/04/11/pytorch3-shen-jing-wang-luo-da-jian/">https://nefelibatabigr.github.io/2026/04/11/pytorch3-shen-jing-wang-luo-da-jian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -785,49 +869,55 @@ torch<span class="token punctuation">.</span>cuda<span class="token punctuation"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2025/04/30/wen-ming-zhi-lu-1031-1040-nian/">
+                <a href="/2026/04/11/pytorch3-shen-jing-wang-luo-da-jian/">
                     <div class="card-image">
                         
-                        <img src="/medias/cover/wenming1031.png" class="responsive-img" alt="《文明之旅》1031-1040年">
+                        <img src="/medias/cover/network.png" class="responsive-img" alt="PyTorch 3：神经网络的搭建">
                         
-                        <span class="card-title">《文明之旅》1031-1040年</span>
+                        <span class="card-title">PyTorch 3：神经网络的搭建</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这是一档聚焦中国历史，计划持续二十年制作播出的视频节目，也是一个超长期的文化工程。它将传承《资治通鉴》的中国编年史传统，从公元1000年开讲，一直讲到1912年，每一期节目聚焦于中国历史上的一年。上下913期节目，前后20年的时光，将陪伴和影响不止一代人。
+                            PyTorch笔记3：基础神经网络的搭建。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-04-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-04-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/lishi1/" class="post-category">
-                                    历史
+                            <a href="/categories/dl1/" class="post-category">
+                                    深度学习
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/wenming/">
-                        <span class="chip bg-color">《文明之旅》</span>
+                    <a href="/tags/dl2/">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
-                    <a href="/tags/lishi2/">
-                        <span class="chip bg-color">历史</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/pytorch/">
+                        <span class="chip bg-color">pytorch</span>
                     </a>
                     
                 </div>
@@ -841,30 +931,30 @@ torch<span class="token punctuation">.</span>cuda<span class="token punctuation"
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2025/02/28/ji-qi-xue-xi-8-seaborn/">
+                <a href="/2025/06/21/pytorch2-tensorboard-transforms/">
                     <div class="card-image">
                         
-                        <img src="/medias/cover/%E5%8F%AF%E8%A7%86%E5%8C%96.jpg" class="responsive-img" alt="机器学习8——Seaborn">
+                        <img src="/medias/cover/fig_process.jpg" class="responsive-img" alt="PyTorch 2：Tensorboard 和 transforms">
                         
-                        <span class="card-title">机器学习8——Seaborn</span>
+                        <span class="card-title">PyTorch 2：Tensorboard 和 transforms</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            机器学习笔记8：Seaborn部分，学习内容为b站视频。
+                            PyTorch笔记2：Tensorboard 和 transforms 的使用。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-06-21
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/ml1/" class="post-category">
-                                    机器学习
+                            <a href="/categories/dl1/" class="post-category">
+                                    深度学习
                                 </a>
                             
                             
@@ -874,16 +964,16 @@ torch<span class="token punctuation">.</span>cuda<span class="token punctuation"
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/dl2/">
+                        <span class="chip bg-color">深度学习</span>
+                    </a>
+                    
                     <a href="/tags/python/">
                         <span class="chip bg-color">python</span>
                     </a>
                     
-                    <a href="/tags/ml2/">
-                        <span class="chip bg-color">机器学习</span>
-                    </a>
-                    
-                    <a href="/tags/seaborn/">
-                        <span class="chip bg-color">seaborn</span>
+                    <a href="/tags/pytorch/">
+                        <span class="chip bg-color">pytorch</span>
                     </a>
                     
                 </div>
