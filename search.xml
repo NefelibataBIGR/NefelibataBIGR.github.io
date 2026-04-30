@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>PyTorch 4：损失函数、优化器</title>
+      <link href="/2026/04/30/pytorch-4-sun-shi-han-shu-you-hua-qi/"/>
+      <url>/2026/04/30/pytorch-4-sun-shi-han-shu-you-hua-qi/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>访问作者github： <a href="https://github.com/NefelibataBIGR/PyTorch_Notes">https://github.com/NefelibataBIGR/PyTorch_Notes</a> ，获取笔记<strong>代码</strong></em></p><h1 id="六、损失函数、优化器"><a href="#六、损失函数、优化器" class="headerlink" title="六、损失函数、优化器"></a>六、损失函数、优化器</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==nn_loss_optim.ipynb== 文件</strong></em></p><h2 id="1-损失函数、反向传播"><a href="#1-损失函数、反向传播" class="headerlink" title="1. 损失函数、反向传播"></a>1. 损失函数、反向传播</h2><ul><li>损失函数：<ul><li>评估神经网络的好坏</li><li>越小越好</li><li>参考官方文档：<a href="https://pytorch.org/docs/stable/nn.html#loss-functions">torch.nn — PyTorch 2.6 documentation</a></li></ul></li><li>常见损失函数：<ul><li>L1损失函数：nn.L1Loss()</li><li>均方差损失函数：nn.MSELoss()</li><li>交叉熵损失函数：nn.CrossEntropyLoss()<ul><li><strong>注意输入数据与标签的形状与类型！</strong></li></ul></li></ul></li><li>反向传播：<ul><li>xxx.backward()</li></ul></li></ul><h2 id="2-优化器"><a href="#2-优化器" class="headerlink" title="2. 优化器"></a>2. 优化器</h2><ul><li>torch.optim，参考官方文档：<a href="https://pytorch.org/docs/stable/optim.html">torch.optim — PyTorch 2.6 documentation</a></li><li>官方给的例子：</li></ul><pre class="line-numbers language-python"><code class="language-python">optimizer <span class="token operator">=</span> optim<span class="token punctuation">.</span>SGD<span class="token punctuation">(</span>model<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr<span class="token operator">=</span><span class="token number">0.01</span><span class="token punctuation">,</span> momentum<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 实例化</span><span class="token comment" spellcheck="true"># optimizer = optim.Adam([var1, var2], lr=0.0001)</span><span class="token keyword">for</span> input<span class="token punctuation">,</span> target <span class="token keyword">in</span> dataset<span class="token punctuation">:</span>    optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 对上一步梯度清零，后面重新计算梯度</span>    output <span class="token operator">=</span> model<span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 训练</span>    loss <span class="token operator">=</span> loss_fn<span class="token punctuation">(</span>output<span class="token punctuation">,</span> target<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 得到损失函数</span>    loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 反向传播</span>    optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 优化参数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><em><strong>一般都要传入参数：model.parameters()（即模型参数，权重、偏置等）、lr（即学习率），其他参数不同优化器不一样，参考官方文档</strong></em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> python </tag>
+            
+            <tag> pytorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>《文明之旅》1041-1050年</title>
       <link href="/2026/04/26/wen-ming-zhi-lu-1041-1050-nian/"/>
       <url>/2026/04/26/wen-ming-zhi-lu-1041-1050-nian/</url>
@@ -607,8 +636,8 @@
     
     <entry>
       <title>Hello World</title>
-      <link href="/2025/01/23/hello-world/"/>
-      <url>/2025/01/23/hello-world/</url>
+      <link href="/2025/01/22/hello-world/"/>
+      <url>/2025/01/22/hello-world/</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
       

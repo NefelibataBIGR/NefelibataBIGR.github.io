@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="生物信息学3：Cytoscape与STRING，学习内容为生物信息学导论课程内容。">
-    <meta name="keywords" content="生信3：Cytoscape + STRING, NeBIGR&#39;s Blog">
+    <meta name="description" content="PyTorch笔记4：损失函数与优化器。">
+    <meta name="keywords" content="PyTorch 4：损失函数、优化器, NeBIGR&#39;s Blog">
     <meta name="author" content="Nefelibata BIGR">
     <meta name="theme-color" content="#0b0b1f">
-    <meta property="og:title" content="生信3：Cytoscape + STRING | NeBIGR&#39;s Blog">
-    <meta property="og:description" content="生物信息学3：Cytoscape与STRING，学习内容为生物信息学导论课程内容。">
+    <meta property="og:title" content="PyTorch 4：损失函数、优化器 | NeBIGR&#39;s Blog">
+    <meta property="og:description" content="PyTorch笔记4：损失函数与优化器。">
     <meta property="og:type" content="article">
-    <meta property="og:image" content="/medias/cover/互作.jpg">
+    <meta property="og:image" content="/medias/cover/损失函数.jpg">
 
-    <title>生信3：Cytoscape + STRING | NeBIGR&#39;s Blog</title>
+    <title>PyTorch 4：损失函数、优化器 | NeBIGR&#39;s Blog</title>
 
     
         <link rel="icon" href="/medias/logo.png">
@@ -78,26 +78,26 @@
 
 <header class="post-header">
     
-    <div class="post-header__cover"><img src="/medias/cover/互作.jpg" alt=""></div>
+    <div class="post-header__cover"><img src="/medias/cover/损失函数.jpg" alt=""></div>
     
     <div class="container">
-        <h1 class="post-header__title">生信3：Cytoscape + STRING</h1>
+        <h1 class="post-header__title">PyTorch 4：损失函数、优化器</h1>
         <div class="post-header__meta">
             <span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                2025-02-11
+                2026-04-30
             </span>
             
             <span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h6l2 3h10v10H3z"/></svg>
                 
-                    <a href="/categories/bioinfo1/">生物信息学</a>
+                    <a href="/categories/dl1/">深度学习</a>
                 
             </span>
             
             <span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-                1469 字 · 约 4 分钟
+                810 字 · 约 3 分钟
             </span>
         </div>
     </div>
@@ -106,63 +106,54 @@
 <div class="container">
     <div class="post-layout">
         <article class="post-body" id="post-body">
-            <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><h2 id="1、Cytoscape"><a href="#1、Cytoscape" class="headerlink" title="1、Cytoscape"></a>1、Cytoscape</h2><ul>
-<li>Cytoscape 是一个专注于开源网络可视化和分析的软件。它的核心是提供基础的功能布局和查询网络，并依据基本的数据的结合成可视化网络。</li>
-<li>Cytoscape 源自系统生物学，用于将生物分子交互网络与高通量基因表达数据和其他的分子状态信息整合在一起，其最强大的功能还是用于大规模蛋白质-蛋白质相互作用、蛋白质-DNA和遗传交互作用的分析。</li>
-</ul>
-<h2 id="2、STRING"><a href="#2、STRING" class="headerlink" title="2、STRING"></a>2、STRING</h2><ul>
-<li>STRING数据库是一个预测蛋白质间相互作用的综合数据库。它不仅包含了实验验证的直接物理性蛋白质-蛋白质相互作用，还包括了通过基因邻接、基因融合事件、基因共表达、文本挖掘等方法推断出的功能关联。</li>
-<li>蛋白质互作网络（PPI网络），在STRING数据库中，是通过将不同的蛋白质作为节点，它们之间的相互作用作为边来构建的一种网络模型。这种网络可以帮助研究人员理解细胞内的复杂过程，如信号传导路径、代谢途径和疾病机制等。</li>
-</ul>
-<h1 id="二、使用STRING数据库生成一张PPI网络图"><a href="#二、使用STRING数据库生成一张PPI网络图" class="headerlink" title="二、使用STRING数据库生成一张PPI网络图"></a>二、使用STRING数据库生成一张PPI网络图</h1><ul>
-<li><p>打开STRING在线网站：<a target="_blank" rel="noopener" href="https://cn.string-db.org/">https://cn.string-db.org/</a><br><img src="https://s2.loli.net/2025/02/11/d71vBzcoG38pnYQ.png" alt="image.png"></p>
-</li>
-<li><p>按照蛋白质名称，氨基酸序列等信息进行检索某个特定的蛋白质相互作用的其他蛋白质<br><img src="https://s2.loli.net/2025/02/11/bDl5gzt2NWOwcpH.png" alt="image.png"><br><em>这里选BRCA1（乳腺癌易感蛋白1）</em></p>
-</li>
-</ul>
-<p><img src="https://s2.loli.net/2025/02/11/68wUdTyjIAZlC21.png" alt="image.png"><br><em>选第一个，人类，点击continue</em></p>
-<ul>
-<li>展示与人类BRCA1互作的蛋白网络<br><img src="https://s2.loli.net/2025/02/11/XT6ZzyYKRoAb8rf.png" alt="image.png"><br><em>圆圈代表蛋白质，点击圆圈可以查看蛋白质相关信息；拖动圆圈可以移动位置；<br>直线代表蛋白质之间相互作用，点击可以查看互作信息</em></li>
-</ul>
-<p><img src="https://s2.loli.net/2025/02/11/O2SMpz5WiCgu46w.png" alt="image.png"><br><em>Known Interactions：即来自数据库或者实验中的数据；<br>Predicted Interactions：即基因邻接，基因融合，基因共现；<br>Others：即文本挖掘，共表达，蛋白同源性</em></p>
-<ul>
-<li><p>用Settings调整网络图：<br><img src="https://s2.loli.net/2025/02/11/UlNbzdjZBk8yLYW.png" alt="image.png"><br><em>Network type: 网络类型，默认只选择“full STRING network”；<br>meaning of network edges：网络线型，两个选项分别表示两个蛋白质之间交互的类型或者两个相连蛋白质之间连接的数据强度；<br>evidence：不同颜色的线表示不同证据；<br>confidence：两个蛋白质相互作用越强连线越粗；<br>active interaction sources：网络图交互数据来源；<br>minimum required interaction score:最低要求的交互置信度，数值越大，节点越少</em></p>
-</li>
-<li><p>调整网络图：<br><img src="https://s2.loli.net/2025/02/11/1f9RFHNPA2u63Mr.png" alt="image.png"><br><img src="https://s2.loli.net/2025/02/11/ah4pIFmMK6YdkZB.png" alt="image.png"><br><img src="https://s2.loli.net/2025/02/11/9whRVyuGoPX3Bt8.png" alt="image.png"></p>
-</li>
-<li><p>用Analysis进行简单的分析：<br><img src="https://s2.loli.net/2025/02/11/ZVErAIiNv5WPTw9.png" alt="image.png"><br><em>进行一些简单的网络分析，得到蛋白参与的功能描述；<br>这些分析结果，在本页下方提供了下载，方便其他应用直接使用</em></p>
-</li>
-<li><p>用Clusters进行聚类：<br><img src="https://s2.loli.net/2025/02/11/Tqogr6jt4VZ9mAc.png" alt="image.png"><br><em>一般是默认为不聚类的，如果需要对图中的节点进行聚类分析，可以点击kmeans clustering进行聚类；<br>每一种颜色代表一个聚类；<br>下方出现聚类的标志和个数，以及对应的蛋白名称等</em></p>
-</li>
-</ul>
-<p><img src="https://s2.loli.net/2025/02/11/RYr62k8zFOjCbq7.png" alt="image.png"><br><img src="https://s2.loli.net/2025/02/11/yD25GlHzB9xp3oA.png" alt="image.png"></p>
-<h1 id="三、Cytoscape与STRING联用"><a href="#三、Cytoscape与STRING联用" class="headerlink" title="三、Cytoscape与STRING联用"></a>三、Cytoscape与STRING联用</h1><ul>
-<li><p>Cytoscape界面（自行安装）：<br><img src="https://s2.loli.net/2025/02/11/AKur8iCxnsOyMJW.png" alt="image.png"></p>
-</li>
-<li><p>在Cytoscape中安装STRING软件库：<br><img src="https://s2.loli.net/2025/02/11/kTv5ScQxKbJVtWC.png" alt="image.png"></p>
-</li>
-<li><p>利用STRING导入蛋白互作网络：</p>
-<ul>
-<li>File-&gt;import -&gt; network -&gt; public databases  </li>
-<li>选择string数据库，以基因或蛋白输入<br><img src="https://s2.loli.net/2025/02/11/BAzGRHZo7e328Sy.png" alt="image.png"><br><img src="https://s2.loli.net/2025/02/11/FQkWbU1AwSHKxyo.png" alt="image.png"><br><em>输入BRCA1，score=0.20，连接的基因最大为80个</em></li>
+            <p><em>访问作者github： <a target="_blank" rel="noopener" href="https://github.com/NefelibataBIGR/PyTorch_Notes">https://github.com/NefelibataBIGR/PyTorch_Notes</a> ，获取笔记<strong>代码</strong></em></p>
+<h1 id="六、损失函数、优化器"><a href="#六、损失函数、优化器" class="headerlink" title="六、损失函数、优化器"></a>六、损失函数、优化器</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==nn_loss_optim.ipynb== 文件</strong></em></p>
+<h2 id="1-损失函数、反向传播"><a href="#1-损失函数、反向传播" class="headerlink" title="1. 损失函数、反向传播"></a>1. 损失函数、反向传播</h2><ul>
+<li>损失函数：<ul>
+<li>评估神经网络的好坏</li>
+<li>越小越好</li>
+<li>参考官方文档：<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/nn.html#loss-functions">torch.nn — PyTorch 2.6 documentation</a></li>
 </ul>
 </li>
-<li><p>展示蛋白互作网络：<br><img src="https://s2.loli.net/2025/02/11/eUPfucg65JACF2z.png" alt="image.png"><br>改为score=0.40，连接的基因最大为20个：<br><img src="https://s2.loli.net/2025/02/11/vgGz6q198XIpjd2.png" alt="image.png"></p>
-</li>
-<li><p>美化STRING网站上保存的网络图：</p>
-<ul>
-<li>保存网络图：<br><img src="https://s2.loli.net/2025/02/11/8cplxGSoPqbnLWO.png" alt="image.png"></li>
+<li>常见损失函数：<ul>
+<li>L1损失函数：nn.L1Loss()</li>
+<li>均方差损失函数：nn.MSELoss()</li>
+<li>交叉熵损失函数：nn.CrossEntropyLoss()<ul>
+<li><strong>注意输入数据与标签的形状与类型！</strong></li>
 </ul>
 </li>
-<li><p>载入网络图到Cytoscape：<br><img src="https://s2.loli.net/2025/02/11/vFHSTquVb4Ut9Q7.png" alt="image.png"><br><img src="https://s2.loli.net/2025/02/11/LkKcxMdV2DPHgmX.png" alt="image.png"><br>进行进一步美化<br>展示效果图：<br><img src="https://s2.loli.net/2025/02/11/pEiHbTWadfR7Zhu.png" alt="image.png"></p>
+</ul>
+</li>
+<li>反向传播：<ul>
+<li>xxx.backward()</li>
+</ul>
 </li>
 </ul>
+<h2 id="2-优化器"><a href="#2-优化器" class="headerlink" title="2. 优化器"></a>2. 优化器</h2><ul>
+<li>torch.optim，参考官方文档：<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/optim.html">torch.optim — PyTorch 2.6 documentation</a></li>
+<li>官方给的例子：</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python">optimizer <span class="token operator">=</span> optim<span class="token punctuation">.</span>SGD<span class="token punctuation">(</span>model<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr<span class="token operator">=</span><span class="token number">0.01</span><span class="token punctuation">,</span> momentum<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 实例化</span>
+<span class="token comment" spellcheck="true"># optimizer = optim.Adam([var1, var2], lr=0.0001)</span>
+
+<span class="token keyword">for</span> input<span class="token punctuation">,</span> target <span class="token keyword">in</span> dataset<span class="token punctuation">:</span>
+    optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 对上一步梯度清零，后面重新计算梯度</span>
+    output <span class="token operator">=</span> model<span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 训练</span>
+    loss <span class="token operator">=</span> loss_fn<span class="token punctuation">(</span>output<span class="token punctuation">,</span> target<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 得到损失函数</span>
+    loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 反向传播</span>
+    optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 优化参数</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em><strong>一般都要传入参数：model.parameters()（即模型参数，权重、偏置等）、lr（即学习率），其他参数不同优化器不一样，参考官方文档</strong></em></p>
 
 
             
             <div class="post-card__tags" style="margin-top: 32px;">
                 
-                    <a class="chip" href="/tags/interact2/">#相互作用</a>
+                    <a class="chip" href="/tags/dl2/">#深度学习</a>
+                
+                    <a class="chip" href="/tags/python/">#python</a>
+                
+                    <a class="chip" href="/tags/pytorch/">#pytorch</a>
                 
             </div>
             
@@ -170,7 +161,7 @@
         
 <aside class="toc" aria-label="目录">
     <div class="toc__title">CONTENTS</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="toc-text">一、简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81Cytoscape"><span class="toc-text">1、Cytoscape</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81STRING"><span class="toc-text">2、STRING</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8STRING%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%9F%E6%88%90%E4%B8%80%E5%BC%A0PPI%E7%BD%91%E7%BB%9C%E5%9B%BE"><span class="toc-text">二、使用STRING数据库生成一张PPI网络图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81Cytoscape%E4%B8%8ESTRING%E8%81%94%E7%94%A8"><span class="toc-text">三、Cytoscape与STRING联用</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E3%80%81%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-text">六、损失函数、优化器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E3%80%81%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="toc-text">1. 损失函数、反向传播</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-text">2. 优化器</span></a></li></ol></li></ol>
 </aside>
 
 
@@ -187,16 +178,11 @@
 
         
         <nav class="post-nav" aria-label="文章导航">
+            <span></span>
             
-            <a class="post-nav__item" href="/2025/02/14/wen-ming-zhi-lu-1021-1030-nian/">
-                <div class="post-nav__label">← 上一篇</div>
-                <div>《文明之旅》1021-1030年</div>
-            </a>
-            
-            
-            <a class="post-nav__item" href="/2025/02/08/ji-qi-xue-xi-6-hui-gui-yu-ju-lei/" style="text-align: right;">
+            <a class="post-nav__item" href="/2026/04/26/wen-ming-zhi-lu-1041-1050-nian/" style="text-align: right;">
                 <div class="post-nav__label">下一篇 →</div>
-                <div>机器学习6——回归与聚类</div>
+                <div>《文明之旅》1041-1050年</div>
             </a>
             
         </nav>
