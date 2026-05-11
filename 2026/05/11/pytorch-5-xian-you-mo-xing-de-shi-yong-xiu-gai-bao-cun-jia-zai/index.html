@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="标签: html | NeBIGR&#39;s Blog">
-    <meta name="keywords" content="标签: html, NeBIGR&#39;s Blog">
+    <meta name="description" content="这篇笔记介绍了PyTorch现有模型的调用、结构修改，以及整模型和参数的保存与加载方法。">
+    <meta name="keywords" content="PyTorch 5：现有模型的使用、修改、保存、加载, NeBIGR&#39;s Blog">
     <meta name="author" content="Nefelibata BIGR">
     <meta name="theme-color" content="#0b0b1f">
-    <meta property="og:title" content="标签: html | NeBIGR&#39;s Blog">
-    <meta property="og:description" content="标签: html | NeBIGR&#39;s Blog">
-    <meta property="og:type" content="website">
-    
+    <meta property="og:title" content="PyTorch 5：现有模型的使用、修改、保存、加载 | NeBIGR&#39;s Blog">
+    <meta property="og:description" content="这篇笔记介绍了PyTorch现有模型的调用、结构修改，以及整模型和参数的保存与加载方法。">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="/medias/cover/现有模型.webp">
 
-    <title>标签: html | NeBIGR&#39;s Blog</title>
+    <title>PyTorch 5：现有模型的使用、修改、保存、加载 | NeBIGR&#39;s Blog</title>
 
     
         <link rel="icon" href="/medias/logo.png">
@@ -74,64 +74,163 @@
 </header>
 
     <main id="app" class="app">
-        <section class="section container">
-    <div class="section__head">
-        <div>
-            <div class="breadcrumb">
-                <a href="/tags/">标签</a><span>/</span>#html
-            </div>
-            <h2 class="section__title"># html <small>1 篇</small></h2>
-        </div>
-    </div>
+        
 
-    <div class="posts-grid">
-        
-            
-<article class="post-card" data-tilt-target>
-    <a href="/2025/01/27/html-css/" class="post-card__cover">
-        
-            <img src="/medias/cover/html_css.jpg" alt="HTML + CSS" loading="lazy">
-        
-    </a>
-    <div class="post-card__body">
-        <h3 class="post-card__title">
-            <a href="/2025/01/27/html-css/">HTML + CSS</a>
-        </h3>
-        <p class="post-card__summary">我的HTML与CSS学习笔记，内容来自coursera上的课程。</p>
-        <div class="post-card__meta">
+<header class="post-header">
+    
+    <div class="post-header__cover"><img src="/medias/cover/现有模型.webp" alt=""></div>
+    
+    <div class="container">
+        <h1 class="post-header__title">PyTorch 5：现有模型的使用、修改、保存、加载</h1>
+        <div class="post-header__meta">
             <span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                2025-01-27
+                2026-05-11
             </span>
             
             <span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h6l2 3h10v10H3z"/></svg>
                 
-                    <a href="/categories/qianduan1/">前端</a>
+                    <a href="/categories/dl1/">深度学习</a>
                 
             </span>
             
+            <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                826 字 · 约 3 分钟
+            </span>
         </div>
-        
-        <div class="post-card__tags">
-            
-                <a class="chip" href="/tags/html/">#html</a>
-            
-                <a class="chip" href="/tags/css/">#css</a>
-            
-                <a class="chip" href="/tags/qianduan2/">#前端</a>
-            
-        </div>
-        
     </div>
-</article>
+</header>
 
+<div class="container">
+    <div class="post-layout">
+        <article class="post-body" id="post-body">
+            <p><em>访问作者github： <a target="_blank" rel="noopener" href="https://github.com/NefelibataBIGR/PyTorch_Notes">https://github.com/NefelibataBIGR/PyTorch_Notes</a> ，获取笔记<strong>代码</strong></em></p>
+<h1 id="七、现有模型的使用、修改、保存、加载"><a href="#七、现有模型的使用、修改、保存、加载" class="headerlink" title="七、现有模型的使用、修改、保存、加载"></a>七、现有模型的使用、修改、保存、加载</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==recent_models.ipynb== 文件</strong></em></p>
+<ul>
+<li><p>以torchvision为例（视觉识别）</p>
+<ul>
+<li>一般模型参考官方文档：<a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/models.html#classification">Models and pre-trained weights — Torchvision 0.21 documentation</a></li>
+<li>VGG16模型参考官方文档：<a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/models/generated/torchvision.models.vgg16.html#torchvision.models.vgg16">vgg16 — Torchvision 0.21 documentation</a></li>
+<li>具体代码见代码文件</li>
+</ul>
+</li>
+<li><p>模型使用：</p>
+<ul>
+<li>见官方文档</li>
+</ul>
+</li>
+<li><p>模型修改：</p>
+<ul>
+<li>添加一层：xxx.add_module(“name” , 添加的层)</li>
+<li>改里面的层：xxx.sequential_name[“name”] = 修改成的层</li>
+</ul>
+</li>
+<li><p>保存模型：</p>
+<ul>
+<li>保存整个模型：torch.save(xxx , “xxx.pth”)</li>
+<li>只保存参数：torch.save(xxx.state_dict() , “xxx.pth”)<ul>
+<li>空间占更小，<strong>官方推荐</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>加载模型：</p>
+<ul>
+<li>加载整个模型：<ul>
+<li>torch.load(“xxx.pth”, <strong>weights_only=False</strong>)<ul>
+<li>weights_only=False：加载整个模型</li>
+<li>weights_only=True（<strong>默认</strong>）：只加载模型的参数，不加载模型本身</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>只加载参数：<ul>
+<li>torch.load(“xxx_dict.pth”)<ul>
+<li>“xxx_dict.pth”为torch.save(xxx.state_dict() , “xxx.pth”)保存的参数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>模型+参数组合：</p>
+<ul>
+<li>xxx.load_state_dict(yyy_dict)<ul>
+<li>xxx：没训练过的模型</li>
+<li>yyy_dict：参数字典（用<strong>只保存参数</strong>的方法保存模型得到的字典）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+            
+            <div class="post-card__tags" style="margin-top: 32px;">
+                
+                    <a class="chip" href="/tags/dl2/">#深度学习</a>
+                
+                    <a class="chip" href="/tags/python/">#python</a>
+                
+                    <a class="chip" href="/tags/pytorch/">#pytorch</a>
+                
+            </div>
+            
+        </article>
+        
+<aside class="toc" aria-label="目录">
+    <div class="toc__title">CONTENTS</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%8E%B0%E6%9C%89%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8%E3%80%81%E4%BF%AE%E6%94%B9%E3%80%81%E4%BF%9D%E5%AD%98%E3%80%81%E5%8A%A0%E8%BD%BD"><span class="toc-text">七、现有模型的使用、修改、保存、加载</span></a></li></ol>
+</aside>
+
+
+    </div>
+
+    <div class="post-footer">
+        
+        <div class="post-license">
+            <strong>版权声明</strong> · 本文采用
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a>
+            协议，转载请注明出处。
+        </div>
+        
+
+        
+        <nav class="post-nav" aria-label="文章导航">
+            <span></span>
+            
+            <a class="post-nav__item" href="/2026/04/30/pytorch-4-sun-shi-han-shu-you-hua-qi/" style="text-align: right;">
+                <div class="post-nav__label">下一篇 →</div>
+                <div>PyTorch 4：损失函数、优化器</div>
+            </a>
+            
+        </nav>
         
     </div>
 
     
-
-</section>
+    <section class="post-comments" aria-label="评论">
+        <header class="post-comments__head">
+            <h3 class="post-comments__title">评论</h3>
+            <span class="post-comments__hint">使用 GitHub 账号留言 · 评论存在
+                <a href="https://github.com/NefelibataBIGR/utterances/issues" target="_blank" rel="noopener">仓库 issues</a>
+            </span>
+        </header>
+        <div class="utterances-wrapper">
+            <script src="https://utteranc.es/client.js"
+                    repo="NefelibataBIGR/utterances"
+                    issue-term="pathname"
+                    label="评论"
+                    theme="github-dark"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+        </div>
+    </section>
+    
+</div>
 
     </main>
     <footer class="footer">

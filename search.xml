@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>PyTorch 5：现有模型的使用、修改、保存、加载</title>
+      <link href="/2026/05/11/pytorch-5-xian-you-mo-xing-de-shi-yong-xiu-gai-bao-cun-jia-zai/"/>
+      <url>/2026/05/11/pytorch-5-xian-you-mo-xing-de-shi-yong-xiu-gai-bao-cun-jia-zai/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>访问作者github： <a href="https://github.com/NefelibataBIGR/PyTorch_Notes">https://github.com/NefelibataBIGR/PyTorch_Notes</a> ，获取笔记<strong>代码</strong></em></p><h1 id="七、现有模型的使用、修改、保存、加载"><a href="#七、现有模型的使用、修改、保存、加载" class="headerlink" title="七、现有模型的使用、修改、保存、加载"></a>七、现有模型的使用、修改、保存、加载</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==recent_models.ipynb== 文件</strong></em></p><ul><li><p>以torchvision为例（视觉识别）</p><ul><li>一般模型参考官方文档：<a href="https://pytorch.org/vision/stable/models.html#classification">Models and pre-trained weights — Torchvision 0.21 documentation</a></li><li>VGG16模型参考官方文档：<a href="https://pytorch.org/vision/stable/models/generated/torchvision.models.vgg16.html#torchvision.models.vgg16">vgg16 — Torchvision 0.21 documentation</a></li><li>具体代码见代码文件</li></ul></li><li><p>模型使用：</p><ul><li>见官方文档</li></ul></li><li><p>模型修改：</p><ul><li>添加一层：xxx.add_module(“name” , 添加的层)</li><li>改里面的层：xxx.sequential_name[“name”] = 修改成的层</li></ul></li><li><p>保存模型：</p><ul><li>保存整个模型：torch.save(xxx , “xxx.pth”)</li><li>只保存参数：torch.save(xxx.state_dict() , “xxx.pth”)<ul><li>空间占更小，<strong>官方推荐</strong></li></ul></li></ul></li><li><p>加载模型：</p><ul><li>加载整个模型：<ul><li>torch.load(“xxx.pth”, <strong>weights_only=False</strong>)<ul><li>weights_only=False：加载整个模型</li><li>weights_only=True（<strong>默认</strong>）：只加载模型的参数，不加载模型本身</li></ul></li></ul></li><li>只加载参数：<ul><li>torch.load(“xxx_dict.pth”)<ul><li>“xxx_dict.pth”为torch.save(xxx.state_dict() , “xxx.pth”)保存的参数</li></ul></li></ul></li></ul></li><li><p>模型+参数组合：</p><ul><li>xxx.load_state_dict(yyy_dict)<ul><li>xxx：没训练过的模型</li><li>yyy_dict：参数字典（用<strong>只保存参数</strong>的方法保存模型得到的字典）</li></ul></li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> python </tag>
+            
+            <tag> pytorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PyTorch 4：损失函数、优化器</title>
       <link href="/2026/04/30/pytorch-4-sun-shi-han-shu-you-hua-qi/"/>
       <url>/2026/04/30/pytorch-4-sun-shi-han-shu-you-hua-qi/</url>
