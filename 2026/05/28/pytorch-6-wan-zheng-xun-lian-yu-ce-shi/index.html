@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="生物化学课程代谢反应的特征总结。">
-    <meta name="keywords" content="生物化学代谢, NeBIGR&#39;s Blog">
+    <meta name="description" content="PyTorch笔记6：完整的模型训练与测试流程，涵盖训练套路、GPU加速方法及模型测试实战。">
+    <meta name="keywords" content="PyTorch 6：完整训练与测试, NeBIGR&#39;s Blog">
     <meta name="author" content="Nefelibata BIGR">
     <meta name="theme-color" content="#0b0b1f">
-    <meta property="og:title" content="生物化学代谢 | NeBIGR&#39;s Blog">
-    <meta property="og:description" content="生物化学课程代谢反应的特征总结。">
+    <meta property="og:title" content="PyTorch 6：完整训练与测试 | NeBIGR&#39;s Blog">
+    <meta property="og:description" content="PyTorch笔记6：完整的模型训练与测试流程，涵盖训练套路、GPU加速方法及模型测试实战。">
     <meta property="og:type" content="article">
-    <meta property="og:image" content="/medias/cover/biochem.jpg">
+    <meta property="og:image" content="/medias/cover/train.webp">
 
-    <title>生物化学代谢 | NeBIGR&#39;s Blog</title>
+    <title>PyTorch 6：完整训练与测试 | NeBIGR&#39;s Blog</title>
 
     
         <link rel="icon" href="/medias/logo.png">
@@ -78,26 +78,26 @@
 
 <header class="post-header">
     
-    <div class="post-header__cover"><img src="/medias/cover/biochem.jpg" alt=""></div>
+    <div class="post-header__cover"><img src="/medias/cover/train.webp" alt=""></div>
     
     <div class="container">
-        <h1 class="post-header__title">生物化学代谢</h1>
+        <h1 class="post-header__title">PyTorch 6：完整训练与测试</h1>
         <div class="post-header__meta">
             <span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                2025-02-02
+                2026-05-28
             </span>
             
             <span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h6l2 3h10v10H3z"/></svg>
                 
-                    <a href="/categories/bio1/">生物</a>
+                    <a href="/categories/dl1/">深度学习</a>
                 
             </span>
             
             <span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-                701 字 · 约 2 分钟
+                890 字 · 约 3 分钟
             </span>
         </div>
     </div>
@@ -106,64 +106,74 @@
 <div class="container">
     <div class="post-layout">
         <article class="post-body" id="post-body">
-            <p><strong>生物化学课程代谢反应的特征总结，从产物、过程等特征来总结相关反应式。</strong></p>
-<hr>
-<ul>
-<li><p>生成PPi的反应：</p>
-<ul>
-<li>生成UDP-G（活性葡萄糖，UTP脱PPi）</li>
-<li>脂酸 + CoA + ATP -&gt; 脂酰~CoA + AMP + PPi</li>
-<li>氨基酸 + ATP -&gt; 氨基酰~AMP + PPi（氨基酸的活化）</li>
-<li>脂酰CoA的形成（脂肪酸的活化）</li>
-<li>CDP-含氮碱的合成（CTP脱PPi）</li>
-<li>瓜氨酸+天冬氨酸 -&gt; 精氨酸代琥珀酸</li>
-<li>嘌呤碱合成第一步</li>
-<li>嘧啶碱合成第五步</li>
-<li>DNA复制5′至3′的聚合</li>
-<li>两段DNA之间的连接（DNA复制）</li>
-<li>氨基酰-tRNA的合成（翻译）</li>
-<li>尿素合成总方程式</li>
+            <p><em>访问作者github： <a target="_blank" rel="noopener" href="https://github.com/NefelibataBIGR/PyTorch_Notes">https://github.com/NefelibataBIGR/PyTorch_Notes</a> ，获取笔记<strong>代码</strong></em></p>
+<h1 id="八、-完整的模型训练套路"><a href="#八、-完整的模型训练套路" class="headerlink" title="八、==完整的模型训练套路=="></a>八、==完整的模型训练套路==</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==whole_training.ipynb== 文件</strong></em></p>
+<ol>
+<li>准备数据集<ul>
+<li>检查数据</li>
 </ul>
 </li>
-<li><p>底物水平磷酸化：</p>
-<ul>
-<li>1,3-二磷酸甘油醛 -&gt; 3-磷酸甘油醛（磷酸甘油酸激酶，糖酵解）</li>
-<li>磷酸烯醇式丙酮酸 -&gt; 丙酮酸（丙酮酸激酶，糖酵解）</li>
-<li>琥珀酰CoA -&gt; 琥珀酸（琥珀酰CoA合成酶，TCA）</li>
+<li>用DataLoader加载数据集</li>
+<li>搭建神经网络<ul>
+<li>一般在model.py里面搭建，然后训练时在train.py里面运行：<strong>from model import *</strong></li>
 </ul>
 </li>
-<li><p>重要反应循环：</p>
-<ul>
-<li>糖酵解</li>
-<li>TCA</li>
-<li>糖异生</li>
-<li>脂肪酸代谢</li>
-<li>氨基酸代谢</li>
-<li>尿素循环</li>
+<li>检查神经网络<ul>
+<li>实例化模型</li>
+<li>测试参数</li>
 </ul>
 </li>
-<li><p>不可逆反应：</p>
-<ul>
-<li>G -&gt; G-6-P（糖酵解1）</li>
-<li>F-6-P的磷酸化成F-1,6-P（糖酵解3）</li>
-<li>PEP生成丙酮酸（糖酵解10）</li>
-<li>丙酮酸生成乙酰CoA（有氧部分第一步）</li>
-<li>乙酰CoA与草酰乙酸生成柠檬酸（TCA1）</li>
-<li>α-酮戊二酸生成琥珀酰CoA（TCA4）</li>
-<li><del>延胡索酸生成苹果酸（TCA7）</del></li>
+<li>设置损失函数、优化器<ul>
+<li>设置损失函数</li>
+<li>设置优化器</li>
 </ul>
 </li>
-<li><p>氧化脱羧：</p>
-<ul>
-<li>丙酮酸  → 乙酰CoA</li>
-<li>异柠檬酸生成α-酮戊二酸（TCA3）</li>
-<li>α-酮戊二酸生成琥珀酰CoA（TCA4）</li>
+<li>设置一些参数<ul>
+<li>训练 / 测试次数</li>
+<li>训练轮数</li>
 </ul>
 </li>
-<li><p>FAD参与的反应：</p>
+<li><strong>训练、测试</strong><ul>
+<li>训练得到输出</li>
+<li>得到损失函数</li>
+<li>优化器优化模型参数</li>
+<li>测试</li>
+<li>将训练和验证都写入日志（Tensorboard），画损失函数图</li>
+<li>保存每一轮训练的模型</li>
+</ul>
+</li>
+<li>准确率评估</li>
+</ol>
+<h1 id="九、-利用GPU训练"><a href="#九、-利用GPU训练" class="headerlink" title="九、==利用GPU训练=="></a>九、==利用GPU训练==</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==whole_training.ipynb== 文件</strong></em></p>
 <ul>
-<li>琥珀酸生成延胡索酸（TCA6）</li>
-<li>脂酰CoA脱氢生成烯脂酰CoA（β氧化1）</li>
+<li><p>能用GPU加速的部分：</p>
+<ul>
+<li>网络模型</li>
+<li>损失函数</li>
+<li>数据、标签值</li>
+</ul>
+</li>
+<li><p>方法1：</p>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    xxx <span class="token operator">=</span> xxx<span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><em>xxx可以是实例化的<strong>模型、损失函数、数据、标签值</strong></em></p>
+<ul>
+<li><strong>方法2：（更常用）</strong></li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 定义训练的设备，'cpu'、'cuda:0'、'cuda:1'……（单显卡'cuda'等价于'cuda:0'）</span>
+device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">'cuda'</span> <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'cpu'</span><span class="token punctuation">)</span>
+xxx <span class="token operator">=</span> xxx<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><em>xxx可以是实例化的<strong>模型、损失函数、数据、标签值</strong></em></p>
+<h1 id="十、完整的模型测试套路"><a href="#十、完整的模型测试套路" class="headerlink" title="十、完整的模型测试套路"></a>十、完整的模型测试套路</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==whole_eval.ipynb== 文件</strong></em></p>
+<ul>
+<li>利用已经训练好的模型，提供输入，进行测试、实际预测</li>
+<li>注意：<ul>
+<li>输入数据的形状</li>
+<li>模型训练时是否采用GPU，如果是，测试也需要GPU</li>
 </ul>
 </li>
 </ul>
@@ -172,12 +182,21 @@
             
             <div class="post-card__tags" style="margin-top: 32px;">
                 
-                    <a class="chip" href="/tags/biochem2/">#生化</a>
+                    <a class="chip" href="/tags/dl2/">#深度学习</a>
+                
+                    <a class="chip" href="/tags/python/">#python</a>
+                
+                    <a class="chip" href="/tags/pytorch/">#pytorch</a>
                 
             </div>
             
         </article>
         
+<aside class="toc" aria-label="目录">
+    <div class="toc__title">CONTENTS</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81-%E5%AE%8C%E6%95%B4%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%A5%97%E8%B7%AF"><span class="toc-text">八、&#x3D;&#x3D;完整的模型训练套路&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D%E3%80%81-%E5%88%A9%E7%94%A8GPU%E8%AE%AD%E7%BB%83"><span class="toc-text">九、&#x3D;&#x3D;利用GPU训练&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E5%AE%8C%E6%95%B4%E7%9A%84%E6%A8%A1%E5%9E%8B%E6%B5%8B%E8%AF%95%E5%A5%97%E8%B7%AF"><span class="toc-text">十、完整的模型测试套路</span></a></li></ol>
+</aside>
+
 
     </div>
 
@@ -192,16 +211,11 @@
 
         
         <nav class="post-nav" aria-label="文章导航">
+            <span></span>
             
-            <a class="post-nav__item" href="/2025/02/04/ji-qi-xue-xi-2-ji-ben-gai-nian/">
-                <div class="post-nav__label">← 上一篇</div>
-                <div>机器学习2——基本概念</div>
-            </a>
-            
-            
-            <a class="post-nav__item" href="/2025/01/31/wen-ming-zhi-lu-1011-1020-nian/" style="text-align: right;">
+            <a class="post-nav__item" href="/2026/05/11/pytorch-5-xian-you-mo-xing-de-shi-yong-xiu-gai-bao-cun-jia-zai/" style="text-align: right;">
                 <div class="post-nav__label">下一篇 →</div>
-                <div>《文明之旅》1011-1020年</div>
+                <div>PyTorch 5：现有模型的使用、修改、保存、加载</div>
             </a>
             
         </nav>

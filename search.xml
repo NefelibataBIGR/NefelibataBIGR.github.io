@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>PyTorch 6：完整训练与测试</title>
+      <link href="/2026/05/28/pytorch-6-wan-zheng-xun-lian-yu-ce-shi/"/>
+      <url>/2026/05/28/pytorch-6-wan-zheng-xun-lian-yu-ce-shi/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>访问作者github： <a href="https://github.com/NefelibataBIGR/PyTorch_Notes">https://github.com/NefelibataBIGR/PyTorch_Notes</a> ，获取笔记<strong>代码</strong></em></p><h1 id="八、-完整的模型训练套路"><a href="#八、-完整的模型训练套路" class="headerlink" title="八、==完整的模型训练套路=="></a>八、==完整的模型训练套路==</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==whole_training.ipynb== 文件</strong></em></p><ol><li>准备数据集<ul><li>检查数据</li></ul></li><li>用DataLoader加载数据集</li><li>搭建神经网络<ul><li>一般在model.py里面搭建，然后训练时在train.py里面运行：<strong>from model import *</strong></li></ul></li><li>检查神经网络<ul><li>实例化模型</li><li>测试参数</li></ul></li><li>设置损失函数、优化器<ul><li>设置损失函数</li><li>设置优化器</li></ul></li><li>设置一些参数<ul><li>训练 / 测试次数</li><li>训练轮数</li></ul></li><li><strong>训练、测试</strong><ul><li>训练得到输出</li><li>得到损失函数</li><li>优化器优化模型参数</li><li>测试</li><li>将训练和验证都写入日志（Tensorboard），画损失函数图</li><li>保存每一轮训练的模型</li></ul></li><li>准确率评估</li></ol><h1 id="九、-利用GPU训练"><a href="#九、-利用GPU训练" class="headerlink" title="九、==利用GPU训练=="></a>九、==利用GPU训练==</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==whole_training.ipynb== 文件</strong></em></p><ul><li><p>能用GPU加速的部分：</p><ul><li>网络模型</li><li>损失函数</li><li>数据、标签值</li></ul></li><li><p>方法1：</p></li></ul><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    xxx <span class="token operator">=</span> xxx<span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><em>xxx可以是实例化的<strong>模型、损失函数、数据、标签值</strong></em></p><ul><li><strong>方法2：（更常用）</strong></li></ul><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 定义训练的设备，'cpu'、'cuda:0'、'cuda:1'……（单显卡'cuda'等价于'cuda:0'）</span>device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">'cuda'</span> <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'cpu'</span><span class="token punctuation">)</span>xxx <span class="token operator">=</span> xxx<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><em>xxx可以是实例化的<strong>模型、损失函数、数据、标签值</strong></em></p><h1 id="十、完整的模型测试套路"><a href="#十、完整的模型测试套路" class="headerlink" title="十、完整的模型测试套路"></a>十、完整的模型测试套路</h1><p><em><strong>具体代码见Python&gt;pytorch文件中的 ==whole_eval.ipynb== 文件</strong></em></p><ul><li>利用已经训练好的模型，提供输入，进行测试、实际预测</li><li>注意：<ul><li>输入数据的形状</li><li>模型训练时是否采用GPU，如果是，测试也需要GPU</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> python </tag>
+            
+            <tag> pytorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PyTorch 5：现有模型的使用、修改、保存、加载</title>
       <link href="/2026/05/11/pytorch-5-xian-you-mo-xing-de-shi-yong-xiu-gai-bao-cun-jia-zai/"/>
       <url>/2026/05/11/pytorch-5-xian-you-mo-xing-de-shi-yong-xiu-gai-bao-cun-jia-zai/</url>
